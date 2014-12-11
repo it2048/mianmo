@@ -3,7 +3,7 @@
   	<div class="wrap buy_wrap" id="pori1">
   		<div class="buy">
   			<p><span>￥ 298.00</span> / 盒</p>
-  			<a href="buy.html" class="now_buy">立即购买</a>
+  			<a href="<?php echo Yii::app()->createAbsoluteUrl('home/buy'); ?>" class="now_buy">立即购买</a>
   		</div>
   	</div>
   </div>
