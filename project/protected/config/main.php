@@ -7,7 +7,7 @@ return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
         'name' => '风际游戏官网-后台系统',
         'language'=>'zh_cn',
-        'defaultController' => 'xxxx',
+        'defaultController' => 'home',
 	// preloading 'log' component
 	'preload'=>array('log'),
 

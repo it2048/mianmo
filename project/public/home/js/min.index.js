@@ -3,7 +3,7 @@ $(function(){
   $.fn.Slide = function(options){
 var defaults = {
 scroll_Number: 1,
-query:".query a",
+query:".query span",
 speed:5000
 }
 var options = jQuery.extend(defaults, options);
@@ -17,17 +17,13 @@ return this.each(function(){
   var pageNumber=Math.ceil(length/scrollNumber);
   var liWidth=$(this).find("li").width();
   var scrollWidth=liWidth*scrollNumber;
-      wai.append($(children).slice(0,scrollNumber).clone());
 
   function slideNext(){
     if(i==pageNumber)
     {
-      wai.stop(false,true).animate({left : -i*scrollWidth }, "normal", function(){wai.css({left:0});});
     i=0;
-    }      
-    else{
-     wai.stop(false,true).animate({ left : -i*scrollWidth }, "normal"); 
-    } 
+    }         
+    children.hide().eq(i).fadeIn(1000);  
     $(options.query).eq(i).addClass("cur").siblings().removeClass("cur");  
     i++;              
   }
@@ -49,42 +45,106 @@ return this.each(function(){
 });
 };
 })(jQuery);
-
-var tab=(function(){
-   var $obj=$("#tabHead li"),
-       $cont=$(".tab_cont .tc_wrap"),
-       $day=$(".date li"),
-       distance=$day.width();
-       function circleAnimate(obj,index){
-          obj.animate({left:index*distance+50},"fast");
-       }
-    return {
-      init:function(){
-         this.bindEvent();
-      },
-      bindEvent:function(){
-       $obj.on("click",function(){
-        var index=$(this).index();
-        $(this).addClass("cur").siblings().removeClass("cur");
-        $cont.eq(index).show().siblings().hide();
-       });
-
-       $day.on("click",function(){
-         var index=$(this).index();
-         var obj=$(this).parents(".th").find(".circle");
-         $(this).addClass("cur").siblings().removeClass("cur");
-         circleAnimate(obj,index);
-         $(this).parents(".tc_wrap").find(".tc").children().eq(index).show().siblings().hide();
-       });
-      }
+function isMobile() {
+    regex = new RegExp('(^0?1[3|4|5|8][0-9]{9}$)');
+    if (!regex.test($('#mobilephone').val())) {
+        return false;
+    } else {
+        return true;
     }
-}())
-  tab.init();
- $("#slide").Slide();
- $(".game").hover(function(){
-  $(".list").show();
- },function(){
-  $(".list").hide();
- })
+}
+
+function submit(url){
+  $.ajax({
+            type: 'POST',
+            url: url,
+            data: {
+                number: $(".pro_number").val(),
+                money: $("#end_money").text(),
+                beizhu:$("#beizhu").val(),
+                zone:$('#zone').val(),
+                address:$('#address').val(),
+                name: $('#name').val(),
+                mobilephone: $('#mobilephone').val(),
+                postcode:$('#postcode').val(),
+                phone:$('#phone').val(),
+                csrf_token: $('input[name="csrf_token"]').val()
+            },
+            success: function(data) {
+                var obj = jQuery.parseJSON(data);
+                if (obj.code == 0) {
+                   window.location.href="pay.html";
+                } else {
+                   
+                }
+                
+            }
+        });
+    } 
+
+var price=298;
+var youhui=20;
+$("#banner_cont").Slide();
+$(".minus").click(function(){
+  var num=parseInt($(".pro_number").val());
+  if(!num){
+    alert("请填写正确的数字");
+    return;
+  }
+  if(num<=1){
+    return;
+  }else{
+    $(".pro_number").val(--num);
+    $("#money").text(""+num*price+".00");
+    $("#product").text(""+num*price+".00");
+    $("#youhui").text(""+youhui+".00");
+    $("#end_money").text(""+(num*price-youhui)+".00");
+  }
+});
+
+$(".add").click(function(){
+  var num=parseInt($(".pro_number").val());
+  if(!num){
+    alert("请填写正确的数字");
+    return;
+  }
+  if(num<1){
+    return;
+  }else{
+    $(".pro_number").val(++num);
+    $("#money").text(""+num*price+".00");
+    $("#product").text(""+num*price+".00");
+    $("#youhui").text(""+youhui+".00");
+    $("#end_money").text(""+(num*price-youhui)+".00");
+  }
+});
+$(".slidedown").click(function(){
+  if($(this).text()=="-"){
+    $(this).text("+");
+  }else{
+    $(this).text("-");
+  }
+  $(".dis_cont").toggle();
+})
+
+$("#submit_info").click(function(){
+  var zone=$.trim($("#zone").val()),
+      address=$.trim($("#address").val()),
+      name=$.trim($("#name").val()),
+      phone=$.trim($("#mobilephone").val());
+  if(zone&&address&&name&&phone){
+     if(isMobile()){
+         
+
+     }else{
+      alert("请输入正确的手机号码");
+     }
+  } 
+  else{
+    alert("红色星号的输入框必须输入信息");
+  }   
+
+})
+
 });
  
