@@ -54,7 +54,7 @@ function isMobile() {
     }
 }
 
-function submit(url){
+function submit(url,jump){
   $.ajax({
             type: 'POST',
             url: url,
@@ -73,7 +73,7 @@ function submit(url){
             success: function(data) {
                 var obj = jQuery.parseJSON(data);
                 if (obj.code == 0) {
-                   window.location.href="pay.html";
+                   window.location.href=jump;
                 } else {
                    
                 }
@@ -125,16 +125,17 @@ $(".slidedown").click(function(){
     $(this).text("-");
   }
   $(".dis_cont").toggle();
-})
+});
 
-$("#submit_info").click(function(){
+function submitinfo(url,jump){
+    alert(url);
   var zone=$.trim($("#zone").val()),
       address=$.trim($("#address").val()),
       name=$.trim($("#name").val()),
       phone=$.trim($("#mobilephone").val());
   if(zone&&address&&name&&phone){
      if(isMobile()){
-         
+        submit(url,jump);
 
      }else{
       alert("请输入正确的手机号码");
@@ -144,7 +145,7 @@ $("#submit_info").click(function(){
     alert("红色星号的输入框必须输入信息");
   }   
 
-})
+}
 
 });
  

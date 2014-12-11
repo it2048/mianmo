@@ -7,6 +7,8 @@
     <meta name="keywords" content="面膜,showplus"/>
     <meta name="description" content="面膜,showplus"/>
     <link href="<?php echo $home;?>css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <script type="text/javascript" src="<?php echo $home;?>js/jquery-1.10.1.min.js"></script>
+    <script type="text/javascript" src="<?php echo $home;?>js/min.index.js"></script>
 </head>
 <body>
 <div class="wrap">
@@ -35,7 +37,5 @@
 <div class="footer">
     <p>© ShowPlus.cc  鲁ICP备13045142号-1</p>
 </div>
-<script type="text/javascript" src="<?php echo $home;?>js/jquery-1.10.1.min.js"></script>
-<script type="text/javascript" src="<?php echo $home;?>js/min.index.js"></script>
 </body>
 </html>

@@ -84,6 +84,7 @@
 			  		<div class="line clearfix">
 			  			<label for=""><span>*</span>收货地址：</label>
 			  			<input type="text" class="fillin" id="address">
+                        <input type="hidden" name="csrf_token" value="<?php echo Yii::app()->request->csrfToken; ?>" />
 			  		</div>
 			  		<div class="line clearfix">
 			  			<label for="">邮编：</label>
@@ -104,7 +105,7 @@
 			  	</form>
 			  </div>
 		    </div>
-		    <div class="confirm_form" id="submit_info">
+		    <div class="confirm_form" id="submit_info" onclick="submitinfo('1','2')">
 		    	提交订单
 		    </div>
 		</div>
