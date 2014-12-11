@@ -1,0 +1,11 @@
+2014/12/11 07:05:21 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "view" 动作.' in D:\xampp\htdocs\mianmo\yii\web\CController.php:483
+Stack trace:
+#0 D:\xampp\htdocs\mianmo\yii\web\CController.php(270): CController->missingAction('view')
+#1 D:\xampp\htdocs\mianmo\yii\web\CWebApplication.php(282): CController->run('view')
+#2 D:\xampp\htdocs\mianmo\yii\web\CWebApplication.php(141): CWebApplication->runController('home/view')
+#3 D:\xampp\htdocs\mianmo\yii\base\CApplication.php(180): CWebApplication->processRequest()
+#4 D:\xampp\htdocs\mianmo\project\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/htdocs/mianmo/project/index.php/home/1
+HTTP_REFERER=http://localhost:8088/htdocs/mianmo/project/index.php/home/buy
+---

@@ -105,7 +105,12 @@
 			  	</form>
 			  </div>
 		    </div>
-		    <div class="confirm_form" id="submit_info" onclick="submitinfo('1','2')">
+		    <div class="confirm_form" id="submit_info">
 		    	提交订单
 		    </div>
+		    <script type="text/javascript">
+              $(".confirm_form").click(function(){
+                submitinfo('1','2');
+              })
+		    </script>
 		</div>

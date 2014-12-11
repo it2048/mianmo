@@ -45,42 +45,8 @@ return this.each(function(){
 });
 };
 })(jQuery);
-function isMobile() {
-    regex = new RegExp('(^0?1[3|4|5|8][0-9]{9}$)');
-    if (!regex.test($('#mobilephone').val())) {
-        return false;
-    } else {
-        return true;
-    }
-}
 
-function submit(url,jump){
-  $.ajax({
-            type: 'POST',
-            url: url,
-            data: {
-                number: $(".pro_number").val(),
-                money: $("#end_money").text(),
-                beizhu:$("#beizhu").val(),
-                zone:$('#zone').val(),
-                address:$('#address').val(),
-                name: $('#name').val(),
-                mobilephone: $('#mobilephone').val(),
-                postcode:$('#postcode').val(),
-                phone:$('#phone').val(),
-                csrf_token: $('input[name="csrf_token"]').val()
-            },
-            success: function(data) {
-                var obj = jQuery.parseJSON(data);
-                if (obj.code == 0) {
-                   window.location.href=jump;
-                } else {
-                   
-                }
-                
-            }
-        });
-    } 
+
 
 var price=298;
 var youhui=20;
@@ -127,6 +93,46 @@ $(".slidedown").click(function(){
   $(".dis_cont").toggle();
 });
 
+
+});
+function isMobile() {
+    regex = new RegExp('(^0?1[3|4|5|8][0-9]{9}$)');
+    if (!regex.test($('#mobilephone').val())) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+ 
+function submit(url,jump){
+  $.ajax({
+            type: 'POST',
+            url: url,
+            data: {
+                number: $(".pro_number").val(),
+                money: $("#end_money").text(),
+                beizhu:$("#beizhu").val(),
+                zone:$('#zone').val(),
+                address:$('#address').val(),
+                name: $('#name').val(),
+                mobilephone: $('#mobilephone').val(),
+                postcode:$('#postcode').val(),
+                phone:$('#phone').val(),
+                csrf_token: $('input[name="csrf_token"]').val()
+            },
+            success: function(data) {
+                var obj = jQuery.parseJSON(data);
+                if (obj.code == 0) {
+                   window.location.href=jump;
+                } else {
+                   
+                }
+                
+            }
+        });
+    }  
+
 function submitinfo(url,jump){
     alert(url);
   var zone=$.trim($("#zone").val()),
@@ -146,6 +152,3 @@ function submitinfo(url,jump){
   }   
 
 }
-
-});
- 

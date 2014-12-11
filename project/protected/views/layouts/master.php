@@ -17,11 +17,11 @@
     </div>
     <div class="nav">
         <a href="<?php echo Yii::app()->createAbsoluteUrl('home/index'); ?>" <?php echo $this->nav=="index"?'class="cur"':'';?>>首页</a>
-        <a href="<?php echo Yii::app()->createAbsoluteUrl('home/showplus'); ?>" <?php echo $this->nav=="index"?'class="cur"':'';?>>showPlus面膜</a>
-        <a href="<?php echo Yii::app()->createAbsoluteUrl('home/brand'); ?>" <?php echo $this->nav=="index"?'class="cur"':'';?>>品牌故事</a>
-        <a href="<?php echo Yii::app()->createAbsoluteUrl('home/buy'); ?>" <?php echo $this->nav=="index"?'class="cur"':'';?>>快速购买</a>
-        <a href="<?php echo Yii::app()->createAbsoluteUrl('home/jxs'); ?>" <?php echo $this->nav=="index"?'class="cur"':'';?>>经销商查询</a>
-        <a href="<?php echo Yii::app()->createAbsoluteUrl('home/fangwei'); ?>" <?php echo $this->nav=="index"?'class="cur"':'';?>>防伪查询</a>
+        <a href="<?php echo Yii::app()->createAbsoluteUrl('home/showplus'); ?>" <?php echo $this->nav=="showplus"?'class="cur"':'';?>>showPlus面膜</a>
+        <a href="<?php echo Yii::app()->createAbsoluteUrl('home/brand'); ?>" <?php echo $this->nav=="brand"?'class="cur"':'';?>>品牌故事</a>
+        <a href="<?php echo Yii::app()->createAbsoluteUrl('home/buy'); ?>" <?php echo $this->nav=="buy"?'class="cur"':'';?>>快速购买</a>
+        <a href="<?php echo Yii::app()->createAbsoluteUrl('home/jxs'); ?>" <?php echo $this->nav=="jxs"?'class="cur"':'';?>>经销商查询</a>
+        <a href="<?php echo Yii::app()->createAbsoluteUrl('home/fangwei'); ?>" <?php echo $this->nav=="fangwei"?'class="cur"':'';?>>防伪查询</a>
     </div>
 <?php echo $content; ?>
 <div class="bottom">
