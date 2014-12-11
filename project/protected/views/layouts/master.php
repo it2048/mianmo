@@ -3,7 +3,9 @@
 <head>
     <?php $home = Yii::app()->request->baseUrl."/public/home/";?>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>首页demo</title>
+    <title>showplus面膜</title>
+    <meta name="keywords" content="面膜,showplus"/>
+    <meta name="description" content="面膜,showplus"/>
     <link href="<?php echo $home;?>css/style.css" rel="stylesheet" type="text/css" media="all" />
 </head>
 <body>
