@@ -11,11 +11,11 @@
 				</div>
 				<div class="num">
 					<span class="minus">-</span>
-					<input class="pro_number" value="1" type="text">
+					<input class="pro_number" value="<?php echo empty($arr[5])?"1":$arr[5];?>" type="text">
 					<span class="add">+</span>
 				</div>
 				<div class="calculate">
-					￥ <span id="money">298.00</span>
+					￥ <span id="money"><?php echo empty($arr[0])?"298.00":$arr[0];?></span>
 				</div>
 			</div>
 			<div class="account clearfix">
@@ -28,13 +28,13 @@
 					</div>
 					<div class="beizhu clearfix">
 						<span>订单备注：</span>
-						<textarea name="" id="beizhu" cols="30" rows="10">请在此填写您对订单或商品的特殊要求或说明，最多300字</textarea>
+						<textarea name="" id="beizhu" cols="30" rows="10"><?php echo empty($arr[8])?"请在此填写您对订单或商品的特殊要求或说明，最多300字":$arr[8];?></textarea>
 					</div>
 				</div>
 				<div class="last_price">
-					<p class="je" >商品金额：<span class="green">￥ <span id="product">298.00</span></span></p>
+					<p class="je" >商品金额：<span class="green">￥ <span id="product"><?php echo empty($arr[0])?"298.00":$arr[0];?></span></span></p>
 					<p class="je" >优惠金额：<span class="green">￥ <span id="youhui">0.00</span></span></p>
-					<p class="je">&nbsp;&nbsp;&nbsp;总金额：<b><span class="green big_font">￥ <span id="end_money">298.00</span></span></b></p>
+					<p class="je">&nbsp;&nbsp;&nbsp;总金额：<b><span class="green big_font">￥ <span id="end_money"><?php echo empty($arr[0])?"298.00":$arr[0];?></span></span></b></p>
 				</div>
 			</div>
 			<div class="user">
@@ -83,24 +83,24 @@
 			  		</div>
 			  		<div class="line clearfix">
 			  			<label for=""><span>*</span>收货地址：</label>
-			  			<input type="text" class="fillin" id="address">
+                                                <input type="text" class="fillin" id="address" value="<?php echo empty($arr[3])?"":$arr[3];?>">
                         <input type="hidden" name="csrf_token" value="<?php echo Yii::app()->request->csrfToken; ?>" />
 			  		</div>
 			  		<div class="line clearfix">
 			  			<label for="">邮编：</label>
-			  			<input type="text" class="fillin" id="postcode">
+                                                <input type="text" class="fillin" id="postcode" value="<?php echo empty($arr[7])?"":$arr[7];?>">
 			  		</div>
 			  		<div class="line clearfix">
 			  			<label for=""><span>*</span>收货人姓名：</label>
-			  			<input type="text" class="fillin" id="name">
+                                                <input type="text" class="fillin" id="name" value="<?php echo empty($arr[1])?"":$arr[1];?>">
 			  		</div>
 			  		<div class="line clearfix">
 			  			<label for=""><span>*</span>手机：</label>
-			  			<input type="text" class="fillin" id="mobilephone">
+                                                <input type="text" class="fillin" id="mobilephone" value="<?php echo empty($arr[4])?"":$arr[4];?>">
 			  		</div>
 			  		<div class="line clearfix">
 			  			<label for="">固定电话：</label>
-			  			<input type="text" class="fillin" id="phone">
+                                                <input type="text" class="fillin" id="phone" value="<?php echo empty($arr[6])?"":$arr[6];?>">
 			  		</div>
 			  	</form>
 			  </div>
@@ -109,8 +109,11 @@
 		    	提交订单
 		    </div>
 		    <script type="text/javascript">
+                        $(function(){
+                            $("#zone").val("<?php echo empty($arr[2])?"":$arr[2];?>");
+                        }); 
                     $(".confirm_form").click(function(){
-                      submitinfo('<?php echo Yii::app()->createAbsoluteUrl('home/save'); ?>','<?php echo Yii::app()->createAbsoluteUrl('home/success'); ?>');
+                      submitinfo('<?php echo Yii::app()->createAbsoluteUrl('home/save'); ?>','<?php echo Yii::app()->createAbsoluteUrl('home/pay'); ?>');
                     });
 		    </script>
 		</div>

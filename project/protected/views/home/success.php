@@ -17,7 +17,7 @@
 	</div>
 	<div class="content">
 		<div class="confirm_wrap clearfix">
-			<div class="dingdan_wrap dingdan_bg2">
+			<div class="dingdan_wrap <?php echo empty($type)?"":$type;?>">
                             <p>金额：￥<span><?php echo empty($arr[0])?"0":$arr[0];?></span></p>
 				<p>姓名：<span><?php echo empty($arr[1])?"0":$arr[1];?></span></p>
 				<p>配送：<span><?php echo empty($arr[2])?"0":$arr[2];?></span></p>
