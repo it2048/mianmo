@@ -26,7 +26,7 @@
             <tr>
                 <td><?php echo $value['id']; ?></td>
                 <td title="<?php echo $value['title']; ?>"><?php echo $value['title']; ?></td>
-                <td><a href="<?php echo $value['img_url']; ?>" class="btnView" target="_blank">图片查看</a></td>
+                <td><a href="<?php echo Yii::app()->request->baseUrl.$value['img_url']; ?>" class="btnView" target="_blank">图片查看</a></td>
                 <td><a href="<?php echo $value['redirect_url']; ?>" class="btnView" target="_blank">地址查看</a></td>
                 <td><?php echo date("Y-m-d H:i:s", $value['add_time']); ?></td>
                 <td><?php echo $value['add_user']; ?></td>
