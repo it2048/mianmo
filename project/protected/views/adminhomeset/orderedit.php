@@ -1,28 +1,38 @@
 <div class="pageContent">
-    <form method="post" action="<?php echo Yii::app()->createAbsoluteUrl('adminhomeset/newsupdate'); ?>" class="pageForm required-validate" onsubmit="return iframeCallback(this, viData);" enctype="multipart/form-data">
+    <form method="post" action="<?php echo Yii::app()->createAbsoluteUrl('adminhomeset/orderupdate'); ?>" class="pageForm required-validate" onsubmit="return iframeCallback(this, viData);" enctype="multipart/form-data">
         <div class="pageFormContent" layoutH="56">
-            <p>
-                <label>文章类型：</label>
-                <select class="combox" name="news_type">
-                    <option value="0" <?php echo $models->type==0?"selected":"";?>>新闻</option>
-                    <option value="1" <?php echo $models->type==1?"selected":"";?>>公告</option>
-                    <option value="2" <?php echo $models->type==2?"selected":"";?>>活动</option>
-                </select>
-            </p>
-            <p>
-                <label>文章状态：</label>
-                <select class="combox" name="news_status">
-                    <option value="0" <?php echo $models->status==0?"selected":"";?>>普通</option>
-                    <option value="1" <?php echo $models->status==1?"selected":"";?>>置顶</option>
-                </select>
-            </p>
             <p class="nowrap">
-                <label>标题：</label>
-                <input  name="news_title" type="text" class="textInput required" size="50" value="<?php echo $models->title;?>">
+                <label>数量：</label>
+                <input  name="number" type="text" class="textInput required" size="50" value="<?php echo $models->number;?>">
                 <input  name="id" type="hidden" value="<?php echo $models->id;?>">
             </p>
-            <p>
-                <textarea class="editor" upImgUrl="<?php echo Yii::app()->createAbsoluteUrl('adminhomeset/imgupload'); ?>" upImgExt="jpg,jpeg,gif,png" name="news_content" rows="21" cols="79" tools="simple"><?php echo $models->content;?></textarea>
+            <p class="nowrap">
+                <label>费用：</label>
+                <input  name="money" type="text" class="textInput required" size="50" value="<?php echo $models->money;?>">
+            </p>
+            <p class="nowrap">
+                <label>地区：</label>
+                <input  name="zone" type="text" class="textInput required" size="50" value="<?php echo $models->zone;?>">
+            </p>
+            <p class="nowrap">
+                <label>地址：</label>
+                <input  name="address" type="text" class="textInput required" size="50" value="<?php echo $models->address;?>">
+            </p>
+            <p class="nowrap">
+                <label>姓名：</label>
+                <input  name="name" type="text" class="textInput required" size="50" value="<?php echo $models->name;?>">
+            </p>
+            <p class="nowrap">
+                <label>手机：</label>
+                <input  name="mobilephone" type="text" class="textInput required" size="50" value="<?php echo $models->mobilephone;?>">
+            </p>
+            <p class="nowrap">
+                <label>邮编：</label>
+                <input  name="postcode" type="text" class="textInput" size="50" value="<?php echo $models->postcode;?>">
+            </p>
+            <p class="nowrap">
+                <label>座机：</label>
+                <input  name="phone" type="text" class="textInput" size="50" value="<?php echo $models->phone;?>">
             </p>
         </div>
         <div class="formBar">

@@ -2,53 +2,6 @@
 
 class AdminhomesetController extends AdminSet
 {
-    
-    public $descArr = array(
-        "android_download"=>"安卓下载链接地址",
-        "iosyy_download"=>"IOS越狱下载地址",
-        "ios_download"=>"IOS下载地址",
-        "linevalue"=>"预约人数",
-        "novice_package"=>"新手礼包链接地址",
-        "novice_strategy"=>"新手指导链接地址",
-        "recharge_url"=>"支付链接地址",
-        "txweibo_url"=>"腾讯微博链接地址",
-        "video_url"=>"CG动画链接地址",
-        "weibo_url"=>"新浪微博链接地址",
-        "wp_download"=>"WP下载地址",
-        "keywords"=>"首页关键词",
-        "title"=>"首页SEO标题",
-        "description"=>"首页SEO描述"
-    );
-    /**
-     * 生成首页
-     *
-     */
-    public function actionIndex()
-    {
-        $allList = array();
-        $model = AppRsConfig::model()->findAll();
-        foreach ($model as $value) {
-            array_push($allList, array("text"=>  $this->descArr[$value['name']],"value"=>$value['value'],"name"=>$value['name']));
-        }
-        $this->renderPartial('index',array("models"=>$allList));
-    }
-    
-    public function actionSave() {
-        $msg = $this->msgcode();
-        $i = 0;
-        foreach ($this->descArr as $key => $value) {
-            $i++;
-            $model = AppRsConfig::model()->findByPk($key);
-            $model->value = Yii::app()->getRequest()->getParam($key, "");
-            $model->save(); 
-        }
-        if($i== count($this->descArr))
-        {
-            $this->msgsucc($msg);
-        }
-        echo json_encode($msg);
-    }
-    
     /**
      * 幻灯片管理
      */
@@ -70,32 +23,11 @@ class AdminhomesetController extends AdminSet
             'models' => $allList,
             'pages' => $pages),false,true);
     }
-
-    /**
-     * 英雄卡牌管理
+    
+        /**
+     * 幻灯片管理
      */
-    public function actionHeroManager()
-    {
-        //先获取当前是否有页码信息
-        $pages['pageNum'] = Yii::app()->getRequest()->getParam("pageNum", 1); //当前页
-        $pages['countPage'] = Yii::app()->getRequest()->getParam("countPage", 0); //总共多少记录
-        $pages['numPerPage'] = Yii::app()->getRequest()->getParam("numPerPage", 50); //每页多少条数据
-
-        $criteria = new CDbCriteria;
-        $pages['countPage'] = AppRsHero::model()->count($criteria);
-        $criteria->limit = $pages['numPerPage'];
-        $criteria->offset = $pages['numPerPage'] * ($pages['pageNum'] - 1);
-        $criteria->order = 'id DESC';
-        $allList = AppRsHero::model()->findAll($criteria);
-        $this->renderPartial('heromanager', array(
-            'models' => $allList,
-            'pages' => $pages),false,true);
-    }
-
-    /**
-     * 链接管理
-     */
-    public function actionLinkManager()
+    public function actionOrderManager()
     {
         //print_r(Yii::app()->user->getState('username'));
         //先获取当前是否有页码信息
@@ -104,37 +36,16 @@ class AdminhomesetController extends AdminSet
         $pages['numPerPage'] = Yii::app()->getRequest()->getParam("numPerPage", 50); //每页多少条数据
 
         $criteria = new CDbCriteria;
-        $pages['countPage'] = AppRsLink::model()->count($criteria);
+        $pages['countPage'] = AppRsOrder::model()->count($criteria);
         $criteria->limit = $pages['numPerPage'];
         $criteria->offset = $pages['numPerPage'] * ($pages['pageNum'] - 1);
         $criteria->order = 'id DESC';
-        $allList = AppRsLink::model()->findAll($criteria);
-        $this->renderPartial('linkmanager', array(
+        $allList = AppRsOrder::model()->findAll($criteria);
+        $this->renderPartial('ordermanager', array(
             'models' => $allList,
             'pages' => $pages),false,true);
     }
-
-    /**
-     * 新闻管理
-     */
-    public function actionNewsManager()
-    {
-        //print_r(Yii::app()->user->getState('username'));
-        //先获取当前是否有页码信息
-        $pages['pageNum'] = Yii::app()->getRequest()->getParam("pageNum", 1); //当前页
-        $pages['countPage'] = Yii::app()->getRequest()->getParam("countPage", 0); //总共多少记录
-        $pages['numPerPage'] = Yii::app()->getRequest()->getParam("numPerPage", 50); //每页多少条数据
-        $criteria = new CDbCriteria;
-        $pages['countPage'] = AppRsNews::model()->count($criteria);
-        $criteria->limit = $pages['numPerPage'];
-        $criteria->offset = $pages['numPerPage'] * ($pages['pageNum'] - 1);
-        $criteria->order = 'id DESC';
-        $allList = AppRsNews::model()->findAll($criteria);
-        $this->renderPartial('newsmanager', array(
-            'models' => $allList,
-            'pages' => $pages),false,true);
-    }
-
+    
     /**
      * 添加幻灯
      */
@@ -142,65 +53,7 @@ class AdminhomesetController extends AdminSet
     {
         $this->renderPartial('slideadd');
     }
-    /**
-     * 添加英雄卡牌
-     */
-    public function actionHeroAdd()
-    {
-        $this->renderPartial('heroadd');
-    }
-    /**
-     * 添加链接
-     */
-    public function actionLinkAdd()
-    {
-        $this->renderPartial('linkadd');
-    }
-
-    /**
-     * 添加新闻
-     */
-    public function actionNewsAdd()
-    {
-        $this->renderPartial('newsadd');
-    }
-
-    /**
-     * 保存新闻
-     */
-    public function actionNewsSave()
-    {
-        $msg = $this->msgcode();
-        $type = Yii::app()->getRequest()->getParam("news_type", 1); //类型
-        $status = Yii::app()->getRequest()->getParam("news_status", 1); //状态
-        $title = Yii::app()->getRequest()->getParam("news_title", ""); //用户名
-        $content = Yii::app()->getRequest()->getParam("news_content", ""); //用户名
-        $username = $this->getUserName(); //用户名
-
-        if($username!=""&&$title!=""&&$content!="")
-        {
-            $model = new AppRsNews();
-            $model->title = $title;
-            $model->type = $type;
-            $model->status = $status;
-            $model->content = $content;
-            $model->add_time = time();
-            $model->add_user = $username;
-            if($model->save())
-            {
-                $this->msgsucc($msg);
-                $msg['msg'] = "添加成功";
-            }else
-            {
-                $msg['msg'] = "存入数据库异常";
-            }
-
-        }else{
-            $msg['msg'] = "必填项不能为空";
-        }
-        echo json_encode($msg);
-    }
-
+   
 
     /**
      * 保存幻灯
@@ -208,11 +61,9 @@ class AdminhomesetController extends AdminSet
     public function actionSlideSave()
     {
         $msg = $this->msgcode();
-        $type = Yii::app()->getRequest()->getParam("slide_type", 1); //用户名
         $title = Yii::app()->getRequest()->getParam("slide_title", ""); //用户名
         $img_url = Yii::app()->getRequest()->getParam("slide_img", ""); //用户名
         $redirect = Yii::app()->getRequest()->getParam("slide_redirect", ""); //用户名
-        $content = Yii::app()->getRequest()->getParam("content", ""); //用户名
         $username = $this->getUserName(); //用户名
         if($img_url=="")
         {
@@ -245,11 +96,9 @@ class AdminhomesetController extends AdminSet
         {
             $model = new AppRsSlide();
             $model->title = $title;
-            $model->type = $type;
             $model->status = 0;
             $model->img_url = $img_url;
             $model->redirect_url = $redirect;
-            $model->content = $content;
             $model->add_time = time();
             $model->add_user = $username;
             if($model->save())
@@ -269,152 +118,6 @@ class AdminhomesetController extends AdminSet
     }
 
     /**
-     * 保存英雄
-     */
-    public function actionHeroSave()
-    {
-        $msg = $this->msgcode();
-        $type = Yii::app()->getRequest()->getParam("hero_type", 1); //类型1,2,3,4 剑士，法师，弓手，骑士
-        $name = Yii::app()->getRequest()->getParam("hero_name", ""); //用户名
-        $img_url = Yii::app()->getRequest()->getParam("hero_img", ""); //英雄图片
-        $occupation = Yii::app()->getRequest()->getParam("hero_occupation", ""); //英雄职业1,2,3 力量，敏捷，智力
-        $content = Yii::app()->getRequest()->getParam("hero_content", ""); //英雄介绍
-        $username = $this->getUserName(); //用户名
-        if($img_url=="")
-        {
-            if(!empty($_FILES['hero_up']['name']))
-            {
-                $img = array("png","jpg");
-                $_tmp_pathinfo = pathinfo($_FILES['hero_up']['name']);
-                if (in_array(strtolower($_tmp_pathinfo['extension']),$img)) {
-                    //设置图片路径
-                    $flname = Yii::app()->params['filetmpcache'].'/'.time().".".md5($username).".".$_tmp_pathinfo['extension'];
-                    $dest_file_path = Yii::app()->basePath . '/../public/'.$flname;
-                    $filepathh = dirname($dest_file_path);
-                    if (!file_exists($filepathh))
-                        $b_mkdir = mkdir($filepathh, 0777, true);
-                    else
-                        $b_mkdir = true;
-                    if ($b_mkdir && is_dir($filepathh)) {
-                        //转存文件到 $dest_file_path路径
-                        if (move_uploaded_file($_FILES['hero_up']['tmp_name'], $dest_file_path)) {
-                            $img_url ='/public/'.$flname;
-                        }
-                    }
-                } else {
-                    $msg["msg"] = '上传的文件格式只能为jpg,png';
-                    $msg["code"] = 3;
-                }
-            }
-        }
-        if($username!=""&&$name!=""&&$img_url!=""&&$content!="")
-        {
-            $model = new AppRsHero();
-            $model->name = $name;
-            $model->type = $type;
-            $model->occupation = $occupation;
-            $model->img_url = $img_url;
-            $model->content = $content;
-            $model->add_time = time();
-            $model->add_user = $username;
-            if($model->save())
-            {
-                $this->msgsucc($msg);
-                $msg['msg'] = "添加成功";
-            }else
-            {
-                $msg['msg'] = "存入数据库异常";
-            }
-
-        }else{
-            if($msg["code"]!=3)
-                $msg['msg'] = "必填项不能为空";
-        }
-        echo json_encode($msg);
-    }
-
-
-    /**
-     * 保存英雄
-     */
-    public function actionHeroUpdate()
-    {
-        $msg = $this->msgcode();
-        $id = Yii::app()->getRequest()->getParam("id", 1);
-        $type = Yii::app()->getRequest()->getParam("hero_type", 1); //类型1,2,3,4 剑士，法师，弓手，骑士
-        $name = Yii::app()->getRequest()->getParam("hero_name", ""); //用户名
-        $img_url = Yii::app()->getRequest()->getParam("hero_img", ""); //英雄图片
-        $occupation = Yii::app()->getRequest()->getParam("hero_occupation", ""); //英雄职业1,2,3 力量，敏捷，智力
-        $content = Yii::app()->getRequest()->getParam("hero_content", ""); //英雄介绍
-        $username = $this->getUserName(); //用户名
-        $model = AppRsHero::model()->findByPk($id);
-        if($img_url=="")
-        {
-            if(!empty($_FILES['hero_up']['name']))
-            {
-                $img = array("png","jpg");
-                $_tmp_pathinfo = pathinfo($_FILES['hero_up']['name']);
-                if (in_array(strtolower($_tmp_pathinfo['extension']),$img)) {
-                    //设置图片路径
-                    $flname = Yii::app()->params['filetmpcache'].'/'.time().".".md5($username).".".$_tmp_pathinfo['extension'];
-                    $dest_file_path = Yii::app()->basePath . '/../public/'.$flname;
-                    $filepathh = dirname($dest_file_path);
-                    if (!file_exists($filepathh))
-                        $b_mkdir = mkdir($filepathh, 0777, true);
-                    else
-                        $b_mkdir = true;
-                    if ($b_mkdir && is_dir($filepathh)) {
-                        //转存文件到 $dest_file_path路径
-                        if (move_uploaded_file($_FILES['hero_up']['tmp_name'], $dest_file_path)) {
-                            $img_url ='/public/'.$flname;
-                            if(strpos($model->img_url,"http://")===false)
-                                unlink(Yii::app()->basePath . '/..'.$model->img_url);
-                        }
-                    }
-                } else {
-                    $msg["msg"] = '上传的文件格式只能为jpg,png';
-                    $msg["code"] = 3;
-                }
-            }
-        }
-        if($username!=""&&$name!=""&&$img_url!=""&&$content!="")
-        {
-            $model->name = $name;
-            $model->type = $type;
-            $model->occupation = $occupation;
-            $model->img_url = $img_url;
-            $model->content = $content;
-            $model->add_time = time();
-            $model->add_user = $username;
-            if($model->save())
-            {
-                $this->msgsucc($msg);
-                $msg['msg'] = "添加成功";
-            }else
-            {
-                $msg['msg'] = "存入数据库异常";
-            }
-
-        }else{
-            if($msg["code"]!=3)
-                $msg['msg'] = "必填项不能为空";
-        }
-        echo json_encode($msg);
-    }
-
-    /**
-     * 编辑英雄
-     */
-    public function actionHeroEdit()
-    {
-        $id = Yii::app()->getRequest()->getParam("id", 0); //编号
-        $model = array();
-        if($id!="")
-            $model = AppRsHero::model()->findByPk($id);
-        $this->renderPartial('heroedit',array("models"=>$model));
-    }
-
-    /**
      * 编辑幻灯
      */
     public function actionSlideEdit()
@@ -425,92 +128,16 @@ class AdminhomesetController extends AdminSet
             $model = AppRsSlide::model()->findByPk($id);
         $this->renderPartial('slideedit',array("models"=>$model));
     }
-
-
     /**
-     * 保存链接
+     * 编辑幻灯
      */
-    public function actionLinkSave()
-    {
-        $msg = $this->msgcode();
-        $type = Yii::app()->getRequest()->getParam("link_type", 0); //0游戏专区，1合作媒体
-        $title = Yii::app()->getRequest()->getParam("link_title", ""); //标题
-        $img_url = Yii::app()->getRequest()->getParam("link_img", ""); //图片地址
-        $redirect = Yii::app()->getRequest()->getParam("link_redirect", ""); //跳转地址
-        $username = $this->getUserName(); //用户名
-        if($img_url=="")
-        {
-            if(!empty($_FILES['link_up']['name']))
-            {
-                $img = array("png","jpg");
-                $_tmp_pathinfo = pathinfo($_FILES['link_up']['name']);
-                if (in_array(strtolower($_tmp_pathinfo['extension']),$img)) {
-                    //设置图片路径
-                    $flname = Yii::app()->params['filetmpcache'].'/'.time().".".md5($username).".".$_tmp_pathinfo['extension'];
-                    $dest_file_path = Yii::app()->basePath . '/../public/'.$flname;
-                    $filepathh = dirname($dest_file_path);
-                    if (!file_exists($filepathh))
-                        $b_mkdir = mkdir($filepathh, 0777, true);
-                    else
-                        $b_mkdir = true;
-                    if ($b_mkdir && is_dir($filepathh)) {
-                        //转存文件到 $dest_file_path路径
-                        if (move_uploaded_file($_FILES['link_up']['tmp_name'], $dest_file_path)) {
-                            $img_url ='/public/'.$flname;
-                        }
-                    }
-                } else {
-                    $msg["msg"] = '上传的文件格式只能为jpg,png';
-                    $msg["code"] = 3;
-                }
-            }
-        }
-        if($username!=""&&$title!=""&&$img_url!="")
-        {
-            $model = new AppRsLink();
-            $model->title = $title;
-            $model->type = $type;
-            $model->img_url = $img_url;
-            $model->link_url = $redirect;
-            $model->add_time = time();
-            $model->add_user = $username;
-            if($model->save())
-            {
-                $this->msgsucc($msg);
-                $msg['msg'] = "添加成功";
-            }else
-            {
-                $msg['msg'] = "存入数据库异常";
-            }
-
-        }else{
-            if($msg["code"]!=3)
-                $msg['msg'] = "必填项不能为空";
-        }
-        echo json_encode($msg);
-    }
-    /**
-     * 编辑链接
-     */
-    public function actionLinkEdit()
+    public function actionOrderEdit()
     {
         $id = Yii::app()->getRequest()->getParam("id", 0); //用户名
         $model = array();
         if($id!="")
-            $model = AppRsLink::model()->findByPk($id);
-        $this->renderPartial('linkedit',array("models"=>$model));
-    }
-
-    /**
-     * 编辑新闻
-     */
-    public function actionNewsEdit()
-    {
-        $id = Yii::app()->getRequest()->getParam("id", 0); //用户名
-        $model = array();
-        if($id!="")
-            $model = AppRsNews::model()->findByPk($id);
-        $this->renderPartial('newsedit',array("models"=>$model));
+            $model = AppRsOrder::model()->findByPk($id);
+        $this->renderPartial('orderedit',array("models"=>$model));
     }
     
     /**
@@ -590,13 +217,11 @@ class AdminhomesetController extends AdminSet
     {
         $msg = $this->msgcode();
         $id = Yii::app()->getRequest()->getParam("id", 1); //用户名
-        $type = Yii::app()->getRequest()->getParam("slide_type", 1); //用户名
         $status = Yii::app()->getRequest()->getParam("slide_status", 0); //用户名
         $title = Yii::app()->getRequest()->getParam("slide_title", ""); //用户名
         $img_url = Yii::app()->getRequest()->getParam("slide_img", ""); //用户名
         $redirect = Yii::app()->getRequest()->getParam("slide_redirect", ""); //用户名
         
-        $content = Yii::app()->getRequest()->getParam("content", ""); //用户名
         $username = $this->getUserName(); //用户名
         $model = AppRsSlide::model()->findByPk($id);
         if($img_url=="")
@@ -632,11 +257,9 @@ class AdminhomesetController extends AdminSet
         if($username!=""&&$title!=""&&$img_url!=""&&$id!="")
         {
             $model->title = $title;
-            $model->type = $type;
             $model->status = $status;
             $model->img_url = $img_url;
             $model->redirect_url = $redirect;
-            $model->content = $content;
             $model->add_time = time();
             $model->add_user = $username;
             if($model->save())
@@ -652,109 +275,6 @@ class AdminhomesetController extends AdminSet
         {
             if($msg["code"]!=3)
                 $msg['msg'] = "必填项不能为空";
-        }
-        echo json_encode($msg);
-    }
-
-    /**
-     * 更新链接
-     */
-    public function actionLinkUpdate()
-    {
-        $msg = $this->msgcode();
-        $id = Yii::app()->getRequest()->getParam("id", 1); //用户名
-        $type = Yii::app()->getRequest()->getParam("link_type", 0); //0游戏专区，1合作媒体
-        $title = Yii::app()->getRequest()->getParam("link_title", ""); //标题
-        $img_url = Yii::app()->getRequest()->getParam("link_img", ""); //图片地址
-        $redirect = Yii::app()->getRequest()->getParam("link_redirect", ""); //跳转地址
-        $username = $this->getUserName(); //用户名
-        $model = AppRsLink::model()->findByPk($id);
-        if($img_url=="")
-        {
-            if(!empty($_FILES['link_up']['name']))
-            {
-                $img = array("png","jpg");
-                $_tmp_pathinfo = pathinfo($_FILES['link_up']['name']);
-                if (in_array(strtolower($_tmp_pathinfo['extension']),$img)) {
-                    //设置图片路径
-                    $flname = Yii::app()->params['filetmpcache'].'/'.time().".".md5($username).".".$_tmp_pathinfo['extension'];
-                    $dest_file_path = Yii::app()->basePath . '/../public/'.$flname;
-                    $filepathh = dirname($dest_file_path);
-                    if (!file_exists($filepathh))
-                        $b_mkdir = mkdir($filepathh, 0777, true);
-                    else
-                        $b_mkdir = true;
-                    if ($b_mkdir && is_dir($filepathh)) {
-                        //转存文件到 $dest_file_path路径
-                        if (move_uploaded_file($_FILES['link_up']['tmp_name'], $dest_file_path)) {
-                            $img_url ='/public/'.$flname;
-                            if(strpos($model->img_url,"http://")===false)
-                                unlink(Yii::app()->basePath . '/..'.$model->img_url);
-                        }
-                    }
-                } else {
-                    $msg["msg"] = '上传的文件格式只能为jpg,png';
-                    $msg["code"] = 3;
-                }
-            }
-        }
-        if($username!=""&&$title!=""&&$img_url!="")
-        {
-            $model->title = $title;
-            $model->type = $type;
-            $model->img_url = $img_url;
-            $model->link_url = $redirect;
-            $model->add_time = time();
-            $model->add_user = $username;
-            if($model->save())
-            {
-                $this->msgsucc($msg);
-                $msg['msg'] = "添加成功";
-            }else
-            {
-                $msg['msg'] = "存入数据库异常";
-            }
-
-        }else{
-            if($msg["code"]!=3)
-                $msg['msg'] = "必填项不能为空";
-        }
-        echo json_encode($msg);
-    }
-    
-        /**
-     * 保存新闻
-     */
-    public function actionNewsUpdate()
-    {
-        $msg = $this->msgcode();
-        $id = Yii::app()->getRequest()->getParam("id", ""); //编号
-        $type = Yii::app()->getRequest()->getParam("news_type", 1); //类型
-        $status = Yii::app()->getRequest()->getParam("news_status", 1); //状态
-        $title = Yii::app()->getRequest()->getParam("news_title", ""); //标题
-        $content = Yii::app()->getRequest()->getParam("news_content", ""); //内容
-        $username = $this->getUserName(); //用户名
-
-        if($id!==""&&$username!=""&&$title!=""&&$content!="")
-        {
-            $model = AppRsNews::model()->findByPk($id);
-            $model->title = $title;
-            $model->type = $type;
-            $model->status = $status;
-            $model->content = $content;
-            $model->add_time = time();
-            $model->add_user = $username;
-            if($model->save())
-            {
-                $this->msgsucc($msg);
-                $msg['msg'] = "更新成功";
-            }else
-            {
-                $msg['msg'] = "存入数据库异常";
-            }
-
-        }else{
-            $msg['msg'] = "必填项不能为空";
         }
         echo json_encode($msg);
     }
@@ -784,22 +304,15 @@ class AdminhomesetController extends AdminSet
         }
         echo json_encode($msg);
     }
-
-    /**
-     * 删除链接
-     */
-    public function actionLinkDel()
+    
+    public function actionOrderDel()
     {
         $msg = $this->msgcode();
         $id = Yii::app()->getRequest()->getParam("id", 0); //用户名
         if($id!=0)
         {
-            //图片需要一起删除
-            $img = AppRsLink::model()->findByPk($id);
-            if(AppRsLink::model()->deleteByPk($id))
+            if(AppRsOrder::model()->deleteByPk($id))
             {
-                if(strpos($img->img_url,"http://")===false)
-                    unlink(Yii::app()->basePath . '/..'.$img->img_url);
                 $this->msgsucc($msg);
             }
             else
@@ -811,24 +324,32 @@ class AdminhomesetController extends AdminSet
         echo json_encode($msg);
     }
     
-    /**
-     * 删除新闻
-     */
-    public function actionNewsDel()
+    public function actionOrderUpdate()
     {
         $msg = $this->msgcode();
-        $id = Yii::app()->getRequest()->getParam("id", 0); //用户名
-        if($id!=0)
+        $id = Yii::app()->getRequest()->getParam("id", ""); //总价
+        $money = Yii::app()->getRequest()->getParam("money", ""); //总价
+        $number = Yii::app()->getRequest()->getParam("number", ""); //数量
+        $zone = Yii::app()->getRequest()->getParam("zone", ""); //地区
+        $address = Yii::app()->getRequest()->getParam("address", ""); //详细地址
+        $name = Yii::app()->getRequest()->getParam("name", ""); //收货人姓名
+        $mobilephone = Yii::app()->getRequest()->getParam("mobilephone", ""); //手机
+        $postcode = Yii::app()->getRequest()->getParam("postcode", ""); //邮编
+        $phone = Yii::app()->getRequest()->getParam("phone", ""); //固定电话
+        
+        $order = AppRsOrder::model()->findByPk($id);
+        $order->money = $money;
+        $order->number = $number;
+        $order->zone = $zone;
+        $order->address = $address;
+        $order->name = $name;
+        $order->mobilephone = $mobilephone;
+        $order->postcode = $postcode;
+        $order->phone = $phone;
+        if($order->save())
         {
-            if(AppRsNews::model()->deleteByPk($id))
-            {
-                $this->msgsucc($msg);
-            }
-            else
-                $msg['msg'] = "数据删除失败";
-        }else
-        {
-            $msg['msg'] = "id不能为空";
+            $this->msgsucc($msg);
+            $msg['msg'] = "成功";
         }
         echo json_encode($msg);
     }

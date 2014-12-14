@@ -1,11 +1,10 @@
 
     <div class="banner">
         <ul id="banner_cont">
-            <li style="display:block;"><a href="<?php echo Yii::app()->createAbsoluteUrl('home/showplus'); ?>#pori1"><img src="<?php echo $home;?>images/banner1.jpg" alt=""></a></li>
-            <li><a href="<?php echo Yii::app()->createAbsoluteUrl('home/showplus'); ?>#pori2"><img src="<?php echo $home;?>images/banner2.jpg" alt=""></a></li>
-            <li><a href="<?php echo Yii::app()->createAbsoluteUrl('home/showplus'); ?>#pori3"><img src="<?php echo $home;?>images/banner3.jpg" alt=""></a></li>
-            <li><a href="<?php echo Yii::app()->createAbsoluteUrl('home/showplus'); ?>#pori4"><img src="<?php echo $home;?>images/banner4.jpg" alt=""></a></li>
-            <li><a href="<?php echo Yii::app()->createAbsoluteUrl('home/showplus'); ?>#pori5"><img src="<?php echo $home;?>images/banner5.jpg" alt=""></a></li>
+            <?php foreach($slider as $k=>$val){?>
+        <li <?php if($k==0)echo 'style="display:block;"'; ?>><a href="<?php echo $val['redirect_url'];?>">
+                    <img src="<?php echo Yii::app()->request->baseUrl.$val['img_url'];?>" alt="<?php echo $val['title'];?>"></a></li>
+            <?php }?>
         </ul>
         <div class="query">
             <span class="cur">1</span>

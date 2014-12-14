@@ -18,10 +18,10 @@
 	<div class="content">
 		<div class="confirm_wrap clearfix">
 			<div class="dingdan_wrap dingdan_bg2">
-				<p>金额：￥<span>298.00</span></p>
-				<p>姓名：<span>包大人</span></p>
-				<p>配送：<span>北京市西城区</span></p>
-				<p>手机：<span>13525467895</span></p>
+                            <p>金额：￥<span><?php echo empty($arr[0])?"0":$arr[0];?></span></p>
+				<p>姓名：<span><?php echo empty($arr[1])?"0":$arr[1];?></span></p>
+				<p>配送：<span><?php echo empty($arr[2])?"0":$arr[2];?></span></p>
+				<p>手机：<span><?php echo empty($arr[3])?"0":$arr[3];?></span></p>
 			</div>
 		</div>
 		<div class="bottom">

@@ -63,11 +63,8 @@
                         <li><a href="#">后台管理</a>
                             <ul>
                                 <li><a href="<?php echo Yii::app()->createAbsoluteUrl('admincontent/usermanager'); ?>" target="navTab" rel="usermaneger">用户管理</a></li>
-                                <li><a href="<?php echo Yii::app()->createAbsoluteUrl('adminhomeset/index'); ?>" target="navTab" rel="homeset">首页设置</a></li>
                                 <li><a href="<?php echo Yii::app()->createAbsoluteUrl('adminhomeset/slidemanager'); ?>" target="navTab" rel="slidemanager">幻灯片设置</a></li>
-                                <li><a href="<?php echo Yii::app()->createAbsoluteUrl('adminhomeset/newsmanager'); ?>" target="navTab" rel="newsmanager">新闻公告设置</a></li>
-                                <li><a href="<?php echo Yii::app()->createAbsoluteUrl('adminhomeset/linkmanager'); ?>" target="navTab" rel="linkmanager">底部链接管理</a></li>
-                                <li><a href="<?php echo Yii::app()->createAbsoluteUrl('adminhomeset/heromanager'); ?>" target="navTab" rel="heromanager">英雄卡牌管理</a></li>
+                                <li><a href="<?php echo Yii::app()->createAbsoluteUrl('adminhomeset/ordermanager'); ?>" target="navTab" rel="ordermanager">订单查看</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -107,7 +104,7 @@
 
 </div>
 
-<div id="footer">Copyright &copy; 2014 风际游戏-燃烧的英雄后台</div>
+<div id="footer">Copyright &copy; 2014 面膜后台</div>
 
 </body>
 </html>

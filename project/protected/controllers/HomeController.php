@@ -16,13 +16,17 @@ class HomeController extends Controller
      */
     public function actionIndex()
     {
-        $allList = array();
-        $model = AppRsConfig::model()->findAll();
-        foreach ($model as $value) {
-            $allList[$value['name']] = $value['value'];
+        $slider = array();
+        $slide = AppRsSlide::model()->findAll("status=0 order by id desc");
+        foreach($slide as $value)
+        {
+            if(count($slider)<5)
+                array_push($slider,array("title"=>$value->title,"img_url"=>$value->img_url,"redirect_url"=>$value->redirect_url));
         }
         $home = Yii::app()->request->baseUrl."/public/home/";
-        $this->render('index',array("models"=>$allList,"home"=>$home));
+        $this->render('index',array("home"=>$home,
+            "slider"=>$slider  //可以替换的幻灯片
+        ));
     }
 
     public function actionBrand()
@@ -65,6 +69,48 @@ class HomeController extends Controller
     {
         $this->nav="success"; 
         $home = Yii::app()->request->baseUrl."/public/home/";
-        $this->renderPartial('success',array("home"=>$home));
+        $money = Yii::app()->getRequest()->getParam("url", ""); //总价
+        $arr = json_decode(base64_decode($money));
+        if(!is_array($arr))
+        {
+            $arr = array();
+        }
+        $this->renderPartial('success',array("home"=>$home,"arr"=>$arr));
+    }
+    
+    public function actionSave()
+    {
+        $msg = $this->msgcode();
+        $money = Yii::app()->getRequest()->getParam("money", ""); //总价
+        $number = Yii::app()->getRequest()->getParam("number", ""); //数量
+        $beizhu = Yii::app()->getRequest()->getParam("beizhu", ""); //备注
+        $zone = Yii::app()->getRequest()->getParam("zone", ""); //地区
+        $address = Yii::app()->getRequest()->getParam("address", ""); //详细地址
+        $name = Yii::app()->getRequest()->getParam("name", ""); //收货人姓名
+        $mobilephone = Yii::app()->getRequest()->getParam("mobilephone", ""); //手机
+        $postcode = Yii::app()->getRequest()->getParam("postcode", ""); //邮编
+        $phone = Yii::app()->getRequest()->getParam("phone", ""); //固定电话
+        
+        $order = new AppRsOrder();
+        $order->time = time();
+        $order->money = $money;
+        $order->ip = Yii::app()->request->userHostAddress;
+        $order->number = $number;
+        $order->beizhu = $beizhu;
+        $order->zone = $zone;
+        $order->address = $address;
+        $order->name = $name;
+        $order->mobilephone = $mobilephone;
+        $order->postcode = $postcode;
+        $order->phone = $phone;
+        if($order->save())
+        {
+            $url = array($money,$name,$zone." ".$address,$mobilephone);
+            
+            $this->msgsucc($msg);
+            $msg['data'] = base64_encode(json_encode($url));
+            $msg['msg'] = "成功";
+        }
+        echo json_encode($msg);
     }
 }

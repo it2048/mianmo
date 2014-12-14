@@ -1,13 +1,6 @@
 <div class="pageContent">
     <form method="post" action="<?php echo Yii::app()->createAbsoluteUrl('adminhomeset/slidesave'); ?>" class="pageForm required-validate" onsubmit="return iframeCallback(this, viData);" enctype="multipart/form-data">
         <div class="pageFormContent" layoutH="56">
-            <p>
-                <label>幻灯类型：</label>
-                <select class="combox" name="slide_type">
-                    <option value="1" selected>不固定</option>
-                    <option value="0">固定</option>
-                </select>
-            </p>
             <p class="nowrap">
                 <label>幻灯标题：</label>
                 <input  name="slide_title" type="text" class="textInput required" size="50" value="">
@@ -24,13 +17,9 @@
                 <label>跳转地址：</label>
                 <input  name="slide_redirect" type="text" class="textInput" size="50" value="">
             </p>
-            <p>
-                <textarea class="editor" name="content" rows="15" cols="79" tools="Fontface,FontSize,Bold,Italic,Underline,Strikethrough,FontColor,BackColor,SelectAll,Removeformat,Source,Fullscreen,About">幻灯内容</textarea>
-            </p>
         </div>
         <div class="formBar">
             <ul>
-                <!--<li><a class="buttonActive" href="javascript:;"><span>保存</span></a></li>-->
                 <li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
                 <li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
             </ul>

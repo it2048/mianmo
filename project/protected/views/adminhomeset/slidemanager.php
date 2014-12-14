@@ -5,7 +5,7 @@
 <div class="pageContent">
     <div class="panelBar">
         <ul class="toolBar">
-            <li><a class="add" mask="true" height="560" width="600" target="dialog" href="<?php echo Yii::app()->createAbsoluteUrl('adminhomeset/slideadd');?>"><span>添加幻灯</span></a></li>
+            <li><a class="add" mask="true" height="240" width="600" target="dialog" href="<?php echo Yii::app()->createAbsoluteUrl('adminhomeset/slideadd');?>"><span>添加幻灯</span></a></li>
         </ul>
     </div>
     <table class="table" width="960" layoutH="76">
@@ -13,13 +13,11 @@
         <tr>
             <th width="20">编号</th>
             <th width="60">标题</th>
-            <th width="180">内容</th>
             <th width="20">图片</th>
             <th width="20">跳转</th>
             <th width="60">添加时间</th>
             <th width="60">添加人</th>
             <th width="40">状态</th>
-            <th width="40">类型</th>
             <th width="40">编辑</th>
         </tr>
         </thead>
@@ -28,16 +26,14 @@
             <tr>
                 <td><?php echo $value['id']; ?></td>
                 <td title="<?php echo $value['title']; ?>"><?php echo $value['title']; ?></td>
-                <td title="<?php echo strip_tags($value['content']); ?>"><?php echo mb_substr(strip_tags($value['content']),0,50,"utf-8");?></td>
                 <td><a href="<?php echo $value['img_url']; ?>" class="btnView" target="_blank">图片查看</a></td>
                 <td><a href="<?php echo $value['redirect_url']; ?>" class="btnView" target="_blank">地址查看</a></td>
                 <td><?php echo date("Y-m-d H:i:s", $value['add_time']); ?></td>
                 <td><?php echo $value['add_user']; ?></td>
                 <td><?php echo $value['status']==0?"已上线":"<p style='color:red;margin-top:3px;'>已下线</p>"; ?></td>
-                <td><?php echo $value['type']==0?"固定":"不固定"; ?></td>
                 <td>
                     <a title="确实要删除这条记录吗?" callback="deleteAuCall" target="ajaxTodo" href="<?php echo Yii::app()->createAbsoluteUrl('adminhomeset/slidedel',array('id'=>$value['id'])); ?>" class="btnDel">删除</a>
-                    <a title="编辑" mask="true" height="560" width="620" target="dialog" href="<?php echo Yii::app()->createAbsoluteUrl('adminhomeset/slideedit',array('id'=>$value['id'])); ?>" class="btnEdit">编辑</a>
+                    <a title="编辑" mask="true" height="260" width="620" target="dialog" href="<?php echo Yii::app()->createAbsoluteUrl('adminhomeset/slideedit',array('id'=>$value['id'])); ?>" class="btnEdit">编辑</a>
                 </td>
             </tr>
         <?php }?>

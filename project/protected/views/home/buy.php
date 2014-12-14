@@ -109,8 +109,8 @@
 		    	提交订单
 		    </div>
 		    <script type="text/javascript">
-              $(".confirm_form").click(function(){
-                submitinfo('1','2');
-              })
+                    $(".confirm_form").click(function(){
+                      submitinfo('<?php echo Yii::app()->createAbsoluteUrl('home/save'); ?>','<?php echo Yii::app()->createAbsoluteUrl('home/success'); ?>');
+                    });
 		    </script>
 		</div>

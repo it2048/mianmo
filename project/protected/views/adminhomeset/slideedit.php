@@ -2,13 +2,6 @@
     <form method="post" action="<?php echo Yii::app()->createAbsoluteUrl('adminhomeset/slideupdate'); ?>" class="pageForm required-validate" onsubmit="return iframeCallback(this, viData);" enctype="multipart/form-data">
         <div class="pageFormContent" layoutH="56">
             <p>
-                <label>幻灯类型：</label>
-                <select class="combox" name="slide_type">
-                    <option value="1" <?php echo $models->type==1?"selected":"";?>>不固定</option>
-                    <option value="0" <?php echo $models->type==0?"selected":"";?>>固定</option>
-                </select>
-            </p>
-            <p>
                 <label>幻灯状态：</label>
                 <select class="combox" name="slide_status">
                     <option value="1" <?php echo $models->status==1?"selected":"";?>>永久下线</option>
@@ -31,9 +24,6 @@
             <p class="nowrap">
                 <label>跳转地址：</label>
                 <input  name="slide_redirect" type="text" class="textInput" size="50" value="<?php echo $models->redirect_url;?>">
-            </p>
-            <p>
-                <textarea class="editor" name="content" rows="15" cols="79" tools="Fontface,FontSize,Bold,Italic,Underline,Strikethrough,FontColor,BackColor,SelectAll,Removeformat,Source,Fullscreen,About"><?php echo $models->content;?></textarea>
             </p>
         </div>
         <div class="formBar">

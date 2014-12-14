@@ -124,7 +124,7 @@ function submit(url,jump){
             success: function(data) {
                 var obj = jQuery.parseJSON(data);
                 if (obj.code == 0) {
-                   window.location.href=jump;
+                   window.location.href=jump+"/url/"+obj.data;
                 } else {
                    
                 }
@@ -134,7 +134,6 @@ function submit(url,jump){
     }  
 
 function submitinfo(url,jump){
-    alert(url);
   var zone=$.trim($("#zone").val()),
       address=$.trim($("#address").val()),
       name=$.trim($("#name").val()),
