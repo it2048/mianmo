@@ -5,7 +5,7 @@
 
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-        'name' => '风际游戏官网-后台系统',
+        'name' => 'showplus面膜-后台系统',
         'language'=>'zh_cn',
         'defaultController' => 'home',
 	// preloading 'log' component
@@ -63,8 +63,8 @@ return array(
 		'db'=>array(
 			'connectionString' => 'mysql:host=localhost;dbname=test',
 			'emulatePrepare' => true,
-			'username' => 'root',
-			'password' => 'xoyo.com',
+			'username' => 'windplay',
+			'password' => '123456',
 			'charset' => 'utf8',
 		),
         // 基于角色的用户权限认证配置
