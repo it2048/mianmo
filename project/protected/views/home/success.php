@@ -13,6 +13,7 @@
 		享受美中之美
 	</div>
 	<div class="nav">
+		<a href="<?php echo Yii::app()->createAbsoluteUrl('home/index'); ?>" style="float:right;">返回首页</a>
 		<p class="lan">提交成功</p>
 	</div>
 	<div class="content">
@@ -29,7 +30,8 @@
 				<li><p>免费热线<br><span>400-004-3515</span></p></li>
 				<li><p class="pad1">官方微信<br><span>showplusmask</span></p></li>
 				<li><p class="pad2">电子邮件<br><span>tanchao@showplus.cc</span></p></li>
-				<li><p class="pad3">在线客服<br><span>9:00-22:00</span></p></li>
+				<li><p class="pad3"><a href="tencent://message/?uin=654805289
+&Site=http://www.showplus.cc/&Menu=yes">在线客服<br><span>9:00-22:00</span></a></p></li>
 			</ul>
 		</div>
 	</div>

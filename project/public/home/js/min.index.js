@@ -126,7 +126,7 @@ function submit(url,jump){
                 if (obj.code == 0) {
                    window.location.href=jump+"/url/"+obj.data;
                 } else {
-                   
+                   alert(obj.msg);
                 }
                 
             }
