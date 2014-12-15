@@ -11,11 +11,11 @@
 				</div>
 				<div class="num">
 					<span class="minus">-</span>
-					<input class="pro_number" value="<?php echo empty($arr[5])?"1":$arr[5];?>" type="text">
+					<input class="pro_number" value="<?php echo empty($arr['number'])?"1":$arr['number'];?>" type="text">
 					<span class="add">+</span>
 				</div>
 				<div class="calculate">
-					￥ <span id="money"><?php echo empty($arr[0])?"298.00":$arr[0];?></span>
+					￥ <span id="money"><?php echo empty($arr['money'])?"298.00":$arr['money'];?></span>
 				</div>
 			</div>
 			<div class="account clearfix">
@@ -28,13 +28,13 @@
 					</div>
 					<div class="beizhu clearfix">
 						<span>订单备注：</span>
-						<textarea name="" id="beizhu" cols="30" rows="10"><?php echo empty($arr[8])?"请在此填写您对订单或商品的特殊要求或说明，最多300字":$arr[8];?></textarea>
+						<textarea name="" id="beizhu" cols="30" rows="10"><?php echo empty($arr['beizhu'])?"请在此填写您对订单或商品的特殊要求或说明，最多300字":$arr['beizhu'];?></textarea>
 					</div>
 				</div>
 				<div class="last_price">
-					<p class="je" >商品金额：<span class="green">￥ <span id="product"><?php echo empty($arr[0])?"298.00":$arr[0];?></span></span></p>
+					<p class="je" >商品金额：<span class="green">￥ <span id="product"><?php echo empty($arr['money'])?"298.00":$arr['money'];?></span></span></p>
 					<p class="je" >优惠金额：<span class="green">￥ <span id="youhui">0.00</span></span></p>
-					<p class="je">&nbsp;&nbsp;&nbsp;总金额：<b><span class="green big_font">￥ <span id="end_money"><?php echo empty($arr[0])?"298.00":$arr[0];?></span></span></b></p>
+					<p class="je">&nbsp;&nbsp;&nbsp;总金额：<b><span class="green big_font">￥ <span id="end_money"><?php echo empty($arr['money'])?"298.00":$arr['money'];?></span></span></b></p>
 				</div>
 			</div>
 			<div class="user">
@@ -83,24 +83,24 @@
 			  		</div>
 			  		<div class="line clearfix">
 			  			<label for=""><span>*</span>收货地址：</label>
-                                                <input type="text" class="fillin" id="address" value="<?php echo empty($arr[3])?"":$arr[3];?>">
+                                                <input type="text" class="fillin" id="address" value="<?php echo empty($arr['address'])?"":$arr['address'];?>">
                         <input type="hidden" name="csrf_token" value="<?php echo Yii::app()->request->csrfToken; ?>" />
 			  		</div>
 			  		<div class="line clearfix">
 			  			<label for="">邮编：</label>
-                                                <input type="text" class="fillin" id="postcode" value="<?php echo empty($arr[7])?"":$arr[7];?>">
+                                                <input type="text" class="fillin" id="postcode" value="<?php echo empty($arr['postcode'])?"":$arr['postcode'];?>">
 			  		</div>
 			  		<div class="line clearfix">
 			  			<label for=""><span>*</span>收货人姓名：</label>
-                                                <input type="text" class="fillin" id="name" value="<?php echo empty($arr[1])?"":$arr[1];?>">
+                                                <input type="text" class="fillin" id="name" value="<?php echo empty($arr['name'])?"":$arr['name'];?>">
 			  		</div>
 			  		<div class="line clearfix">
 			  			<label for=""><span>*</span>手机：</label>
-                                                <input type="text" class="fillin" id="mobilephone" value="<?php echo empty($arr[4])?"":$arr[4];?>">
+                                                <input type="text" class="fillin" id="mobilephone" value="<?php echo empty($arr['mobilephone'])?"":$arr['mobilephone'];?>">
 			  		</div>
 			  		<div class="line clearfix">
 			  			<label for="">固定电话：</label>
-                                                <input type="text" class="fillin" id="phone" value="<?php echo empty($arr[6])?"":$arr[6];?>">
+                                                <input type="text" class="fillin" id="phone" value="<?php echo empty($arr['phone'])?"":$arr['phone'];?>">
 			  		</div>
 			  	</form>
 			  </div>
@@ -110,7 +110,7 @@
 		    </div>
 		    <script type="text/javascript">
                         $(function(){
-                            $("#zone").val("<?php echo empty($arr[2])?"":$arr[2];?>");
+                            $("#zone").val("<?php echo empty($arr['zone'])?"":$arr['zone'];?>");
                         }); 
                     $(".confirm_form").click(function(){
                       submitinfo('<?php echo Yii::app()->createAbsoluteUrl('home/save'); ?>','<?php echo Yii::app()->createAbsoluteUrl('home/pay'); ?>');

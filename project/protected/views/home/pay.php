@@ -13,24 +13,26 @@
             <tr>
                 <td  width="20%">火龙精粹生物纤维面膜</td>
                 <td>￥<span>298.00</span></td>
-                <td><?php echo empty($arr[5]) ? "0" : $arr[5]; ?></td>
-                <td>￥<span><?php echo empty($arr[0]) ? "298.00" : $arr[0]; ?></span></td>
+                <td><?php echo empty($arr['number']) ? "0" : $arr['number']; ?></td>
+                <td>￥<span><?php echo empty($arr['money']) ? "298.00" : $arr['money']; ?></span></td>
                 <td>土豪金</td>
             </tr>
             </tbody>
         </table>
         <h3 class="tj_bt"></h3>
         <div class="last_price">
-            <p class="je" >商品金额：<span class="green">￥ <span id="product"><?php echo empty($arr[0]) ? "0" : $arr[0]; ?></span></span></p>
+            <p class="je" >商品金额：<span class="green">￥ <span id="product"><?php echo empty($arr['money']) ? "298.00" : $arr['money']; ?></span></span></p>
             <p class="je" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;运费：<span class="green">￥ <span id="send">0.00</span></span></p>
             <p class="je" >优惠金额：<span class="green">￥ <span id="youhui">0.00</span></span></p>
-            <p class="je">&nbsp;&nbsp;&nbsp;&nbsp;总金额：<b><span class="green big_font">￥ <span id="youhui"><?php echo empty($arr[0]) ? "0" : $arr[0]; ?></span></span></b></p>
+            <p class="je">&nbsp;&nbsp;&nbsp;&nbsp;总金额：<b><span class="green big_font">￥ <span id="youhui"><?php echo empty($arr['money']) ? "298.00" : $arr['money']; ?></span></span></b></p>
         </div>
         <div class="clear"></div>
         <h3 class="tj_bt">收货信息</h3>
         <div class="address_again">
-            <p>收货地区：<span><?php echo empty($arr[2]) ? "0" : $arr[2]; ?></span>收货地址：<span><?php echo empty($arr[3]) ? "0" : $arr[3]; ?></span></p>
-            <p>邮编：<span><?php echo empty($arr[7]) ? "0" : $arr[7]; ?></span>收货人姓名：<span><?php echo empty($arr[1]) ? "0" : $arr[1]; ?></span>手机：<span><?php echo empty($arr[4]) ? "0" : $arr[4]; ?></span>电话：<span><?php echo empty($arr[6]) ? "0" : $arr[6]; ?></span></p>
+            <p>收货地区：<span><?php echo empty($arr['zone']) ? "" : $arr['zone']; ?></span>收货地址：<span><?php echo empty($arr['address']) ? "" : $arr['address']; ?></span></p>
+            <p>邮编：<span><?php echo empty($arr['postcode']) ? "" : $arr['postcode']; ?></span>收货人姓名：<span><?php echo empty($arr['name']) ? "" : $arr['name']; ?>
+                </span>手机：<span><?php echo empty($arr['mobilephone']) ? "" : $arr['mobilephone']; ?>
+                </span>电话：<span><?php echo empty($arr['phone']) ? "" : $arr['phone']; ?></span></p>
         </div>
         <h3 class="tj_bt"></h3>					   
         <div class="confirm_form" onclick="submit('<?php echo Yii::app()->createAbsoluteUrl('home/buy'); ?>')">

@@ -45,10 +45,6 @@ CREATE TABLE IF NOT EXISTS `rs_admin` (
 -- 转存表中的数据 `rs_admin`
 --
 
-INSERT INTO `rs_admin` (`username`, `password`, `tel`, `email`) VALUES
-('admin', '21232f297a57a5a743894a0e4a801fc3', '18228041351', 'jsjscool@163.com'),
-('xiongfanglei', '4297f44b13955235245b2497399d7a93', '123456', '123456@163.com');
-
 CREATE TABLE IF NOT EXISTS `rs_order` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '编号',
   `time` int(11) NOT NULL COMMENT '创建时间',
@@ -62,6 +58,8 @@ CREATE TABLE IF NOT EXISTS `rs_order` (
   `mobilephone` varchar(32) NOT NULL COMMENT '备注',
   `postcode` varchar(32) NOT NULL COMMENT '备注',
   `phone` varchar(32) NOT NULL COMMENT '备注',
+  `pay_type` int(11) NOT NULL COMMENT '支付类型。1，2 支付宝，到付',
+  `pay_status` int(11) NOT NULL COMMENT '付款成功，1，2 没付款，已付款',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='订单表' AUTO_INCREMENT=3 ;
 

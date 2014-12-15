@@ -18,10 +18,10 @@
 	<div class="content">
 		<div class="confirm_wrap clearfix">
 			<div class="dingdan_wrap <?php echo empty($type)?"":$type;?>">
-                            <p>金额：￥<span><?php echo empty($arr[0])?"0":$arr[0];?></span></p>
-				<p>姓名：<span><?php echo empty($arr[1])?"0":$arr[1];?></span></p>
-				<p>配送：<span><?php echo empty($arr[2])?"0":$arr[2];?></span></p>
-				<p>手机：<span><?php echo empty($arr[3])?"0":$arr[3];?></span></p>
+                            <p>金额：￥<span><?php echo empty($arr['money'])?"0":$arr['money'];?></span></p>
+				<p>姓名：<span><?php echo empty($arr['name'])?"0":$arr['name'];?></span></p>
+				<p>配送：<span><?php echo empty($arr['zone'])||empty($arr['address'])?"":$arr['zone']." ".$arr['address'];?></span></p>
+				<p>手机：<span><?php echo empty($arr['mobilephone'])?"":$arr['mobilephone'];?></span></p>
 			</div>
 		</div>
 		<div class="bottom">

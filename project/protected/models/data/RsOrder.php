@@ -16,6 +16,8 @@
  * @property string $mobilephone
  * @property string $postcode
  * @property string $phone
+ * @property integer $pay_type
+ * @property integer $pay_status
  */
 class RsOrder extends CActiveRecord
 {
@@ -35,8 +37,8 @@ class RsOrder extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('time, ip, number, money, beizhu, zone, address, name, mobilephone, postcode, phone', 'required'),
-			array('time, number', 'numerical', 'integerOnly'=>true),
+			array('time, ip, number, money, beizhu, zone, address, name, mobilephone, postcode, phone, pay_type, pay_status', 'required'),
+			array('time, number, pay_type, pay_status', 'numerical', 'integerOnly'=>true),
 			array('ip', 'length', 'max'=>16),
 			array('money, name', 'length', 'max'=>64),
 			array('zone', 'length', 'max'=>128),
@@ -44,7 +46,7 @@ class RsOrder extends CActiveRecord
 			array('mobilephone, postcode, phone', 'length', 'max'=>32),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, time, ip, number, money, beizhu, zone, address, name, mobilephone, postcode, phone', 'safe', 'on'=>'search'),
+			array('id, time, ip, number, money, beizhu, zone, address, name, mobilephone, postcode, phone, pay_type, pay_status', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -77,6 +79,8 @@ class RsOrder extends CActiveRecord
 			'mobilephone' => 'Mobilephone',
 			'postcode' => 'Postcode',
 			'phone' => 'Phone',
+			'pay_type' => 'Pay Type',
+			'pay_status' => 'Pay Status',
 		);
 	}
 
@@ -110,6 +114,8 @@ class RsOrder extends CActiveRecord
 		$criteria->compare('mobilephone',$this->mobilephone,true);
 		$criteria->compare('postcode',$this->postcode,true);
 		$criteria->compare('phone',$this->phone,true);
+		$criteria->compare('pay_type',$this->pay_type);
+		$criteria->compare('pay_status',$this->pay_status);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

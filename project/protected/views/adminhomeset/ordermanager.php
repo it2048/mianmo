@@ -18,6 +18,8 @@
             <th width="40">手机</th>
             <th width="40">邮编</th>
             <th width="40">座机</th>
+            <th width="40">支付类型</th>
+            <th width="40">支付状态</th>
             <th width="40">编辑</th>
         </tr>
         </thead>
@@ -36,6 +38,12 @@
                 <td><?php echo $value['mobilephone']; ?></td>
                 <td><?php echo $value['postcode']; ?></td>
                 <td><?php echo $value['phone']; ?></td>
+                <td><?php if($value['pay_type']==0) echo "未选择";
+                    elseif($value['pay_type']==1) echo "直接支付";
+                    else echo "到付"; ?></td>
+                <td><?php if($value['pay_status']==0) echo "未选择";
+                    elseif($value['pay_status']==1) echo "没付款";
+                    else echo "已付款"; ?></td>
                 <td>
                     <a title="确实要删除这条记录吗?" callback="deleteAuCall" target="ajaxTodo" href="<?php echo Yii::app()->createAbsoluteUrl('adminhomeset/orderdel',array('id'=>$value['id'])); ?>" class="btnDel">删除</a>
                     <a title="编辑" height="360" mask="true" width="620" target="dialog" href="<?php echo Yii::app()->createAbsoluteUrl('adminhomeset/orderedit',array('id'=>$value['id'])); ?>" class="btnEdit">编辑</a>

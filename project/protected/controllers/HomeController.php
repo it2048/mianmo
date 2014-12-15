@@ -41,11 +41,16 @@ class HomeController extends Controller
         $home = Yii::app()->request->baseUrl."/public/home/";
         $money = Yii::app()->getRequest()->getParam("url", ""); //总价
         $arr = json_decode(base64_decode($money));
-        if(!is_array($arr))
+        $app = array();
+        if(is_array($arr))
         {
-            $arr = array();
+            $aid = AppRsOrder::model()->findByPk($arr[0]);
+            if($aid->mobilephone == $arr[1])
+            {
+                $app = $aid;
+            }
         }
-        $this->render('buy',array("home"=>$home,"arr"=>$arr));
+        $this->render('buy',array("home"=>$home,"arr"=>$app));
     }
     public function actionFangwei()
     {
@@ -66,10 +71,7 @@ class HomeController extends Controller
         $money = Yii::app()->getRequest()->getParam("url", ""); //总价
         $arr = json_decode(base64_decode($money));
         $app = array();
-        if(!is_array($arr))
-        {
-            $arr = array();
-        }else
+        if(is_array($arr))
         {
             $aid = AppRsOrder::model()->findByPk($arr[0]);
             if($aid->mobilephone == $arr[1])
@@ -94,11 +96,16 @@ class HomeController extends Controller
         
         $tsl = $type==1?"":"dingdan_bg2";
         $arr = json_decode(base64_decode($money));
-        if(!is_array($arr))
+        $app = array();
+        if(is_array($arr))
         {
-            $arr = array();
+            $aid = AppRsOrder::model()->findByPk($arr[0]);
+            if($aid->mobilephone == $arr[1])
+            {
+                $app = $aid;
+            }
         }
-        $this->renderPartial('success',array("home"=>$home,"arr"=>$arr,"type"=>$tsl));
+        $this->renderPartial('success',array("home"=>$home,"arr"=>$app,"type"=>$tsl));
     }
     
     public function actionSave()
@@ -126,6 +133,8 @@ class HomeController extends Controller
         $order->mobilephone = $mobilephone;
         $order->postcode = $postcode;
         $order->phone = $phone;
+        $order->pay_type = 0;
+        $order->pay_status = 0;
         if($order->save())
         {
             $id = $order->attributes['id'];
@@ -144,11 +153,14 @@ class HomeController extends Controller
         $money = Yii::app()->getRequest()->getParam("url", ""); //总价
         $pay_way = Yii::app()->getRequest()->getParam("pay_way", ""); //总价
         $arr = json_decode(base64_decode($money));
-        if(!is_array($arr))
+        if(is_array($arr))
         {
-            $arr = array();
-        }else
-        {
+            $aid = AppRsOrder::model()->findByPk($arr[0]);
+            if($aid->mobilephone == $arr[1])
+            {
+                $aid->pay_type = $pay_way==1?1:2;
+                $aid->save();
+            }
             $this->msgsucc($msg);
             $msg['data'] = Yii::app()->createAbsoluteUrl('home/success')."/type/".$pay_way."/url/".$money; 
         }
