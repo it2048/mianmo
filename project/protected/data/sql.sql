@@ -56,12 +56,12 @@ CREATE TABLE IF NOT EXISTS `rs_order` (
   `address` varchar(1024) NOT NULL COMMENT '备注',
   `name` varchar(64) NOT NULL COMMENT '备注',
   `mobilephone` varchar(32) NOT NULL COMMENT '备注',
-  `postcode` varchar(32) NOT NULL COMMENT '备注',
-  `phone` varchar(32) NOT NULL COMMENT '备注',
+  `postcode` varchar(32) DEFAULT NULL COMMENT '备注',
+  `phone` varchar(32) DEFAULT NULL COMMENT '备注',
   `pay_type` int(11) NOT NULL COMMENT '支付类型。1，2 支付宝，到付',
   `pay_status` int(11) NOT NULL COMMENT '付款成功，1，2 没付款，已付款',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='订单表' AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='订单表' AUTO_INCREMENT=1 ;
 
 --
 -- 转存表中的数据 `rs_order`

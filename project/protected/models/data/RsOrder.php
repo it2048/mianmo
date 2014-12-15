@@ -37,7 +37,7 @@ class RsOrder extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('time, ip, number, money, beizhu, zone, address, name, mobilephone, postcode, phone, pay_type, pay_status', 'required'),
+			array('time, ip, number, money, beizhu, zone, address, name, mobilephone, pay_type, pay_status', 'required'),
 			array('time, number, pay_type, pay_status', 'numerical', 'integerOnly'=>true),
 			array('ip', 'length', 'max'=>16),
 			array('money, name', 'length', 'max'=>64),
