@@ -20,7 +20,7 @@
             <th width="40">座机</th>
             <th width="40">支付类型</th>
             <th width="40">支付状态</th>
-            <th width="40">编辑</th>
+            <th width="70">编辑</th>
         </tr>
         </thead>
         <tbody>
