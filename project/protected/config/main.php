@@ -17,7 +17,8 @@ return array(
         'application.models.data.*',
 		'application.components.*',
         'application.components.userware.*',
-        'application.components.rbac.*'
+        'application.components.rbac.*',
+        'application.components.lib.*'
 	),
 
 	'modules'=>array(
@@ -101,6 +102,14 @@ return array(
 	'params'=>array(
 		// this is used in contact page
 		'account_url'=>'http://10.221.8.154/web/index.php',
-        'filetmpcache'=>'upload'
+                'filetmpcache'=>'upload',
+                'alipay_config'=>array(
+                    'partner'=>'',
+                    'key'=>'',
+                    'sign_type'=>strtoupper('MD5'),
+                    'input_charset'=>strtolower('utf-8'),
+                    'cacert'=>getcwd().'\\cacert.pem',
+                    'transport'=>'http', 
+                )
 	),
 );
