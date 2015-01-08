@@ -23,7 +23,54 @@ class AdminhomesetController extends AdminSet
             'models' => $allList,
             'pages' => $pages),false,true);
     }
-    
+        /**
+     * 经销商查看
+     */
+    public function actionDistributor()
+    {
+        //print_r(Yii::app()->user->getState('username'));
+        //先获取当前是否有页码信息
+        $pages['pageNum'] = Yii::app()->getRequest()->getParam("pageNum", 1); //当前页
+        $pages['countPage'] = Yii::app()->getRequest()->getParam("countPage", 0); //总共多少记录
+        $pages['numPerPage'] = Yii::app()->getRequest()->getParam("numPerPage", 50); //每页多少条数据
+
+        $criteria = new CDbCriteria;
+        $pages['countPage'] = AppDistributor::model()->count($criteria);
+        $criteria->limit = $pages['numPerPage'];
+        $criteria->offset = $pages['numPerPage'] * ($pages['pageNum'] - 1);
+        $criteria->order = 'id DESC';
+        $allList = AppDistributor::model()->findAll($criteria);
+        $this->renderPartial('distributor', array(
+            'models' => $allList,
+            'pages' => $pages),false,true);
+    }
+    public function actionDistributoradd()
+    {
+        $this->renderPartial('distributoradd');
+    }
+    public function actionDistributorup()
+    {
+        $msg = $this->msgcode();
+        $_tmp_pathinfo = pathinfo($_FILES['file']['name']);
+        if (!empty($_FILES) &&
+                in_array($_tmp_pathinfo['extension'], array(
+                    'csv'
+                )))
+        {
+            $dest_file_path = Yii::app()->basePath . '/../public/upload/'.$_FILES['file']['name'];
+            //转存文件到 $dest_file_path路径
+            if (move_uploaded_file($_FILES['file']['tmp_name'], $dest_file_path))
+            {
+                $cu = AppDistributor::model()->storeLoad($dest_file_path);
+                $msg['msg'] = $cu;
+                $this->msgsucc($msg);
+            }
+        }
+        else
+            $msg['msg'] = '上传的文件格式不是csv';
+        //页面只接受json数据
+        echo json_encode($msg);
+    }
         /**
      * 幻灯片管理
      */

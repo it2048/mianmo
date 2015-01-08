@@ -65,6 +65,7 @@
                                 <li><a href="<?php echo Yii::app()->createAbsoluteUrl('admincontent/usermanager'); ?>" target="navTab" rel="usermaneger">用户管理</a></li>
                                 <li><a href="<?php echo Yii::app()->createAbsoluteUrl('adminhomeset/slidemanager'); ?>" target="navTab" rel="slidemanager">幻灯片设置</a></li>
                                 <li><a href="<?php echo Yii::app()->createAbsoluteUrl('adminhomeset/ordermanager'); ?>" target="navTab" rel="ordermanager">订单查看</a></li>
+                                <li><a href="<?php echo Yii::app()->createAbsoluteUrl('adminhomeset/distributor'); ?>" target="navTab" rel="distributor">经销商查看</a></li>
                             </ul>
                         </li>
                     </ul>
