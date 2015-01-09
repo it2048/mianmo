@@ -8,14 +8,14 @@
     </div>
     <style type="text/css">
 .jxs_info_show,
-.jxs_error{background: #333; background: rgba(0,0,0,0.7); padding: 20px; width:585px; display: none; color: #fff; font-size: 14px; line-height: 24px; }  
+.jxs_error{background: #333; background: rgba(0,0,0,0.5); padding: 20px; width:585px; display: none; color: #fff; font-size: 14px; line-height: 24px;margin: 10px auto; border-radius: 10px; }  
 .jxs_weixin { color:#4ee81e; font-size:14px; } 
-.jxs_xinxi { border-top: 1px solid #ccc; padding: 15px 0; line-height: 24px; color: #fff;}
+.jxs_xinxi { border-top: 1px solid #ccc; padding: 15px 0; line-height: 24px; color: #fff; margin-top: 10px;}
 .red_error { color: #f00;}
 
     </style>
     <div class="jxs_info_show">
-    	<span class="jsx_weixin"></span>已授权！<br>
+    	<span class="jxs_weixin"></span>已授权！<br>
     	恭喜，您查询的微信号是ShowPlus面膜的授权经销商，所售产品为ShowPlus出品，请放心购买!
     	<p class="jxs_xinxi">
     		
