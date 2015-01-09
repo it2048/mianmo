@@ -173,7 +173,8 @@ function searchJxs(url){
             type: 'POST',
             url: url,
             data: {
-                wx: $(".jxs_search").val()
+                wx: $(".jxs_search").val(),
+                csrf_token: $('input[name="csrf_token"]').val()
             },
             success: function(data) {
                 var obj = jQuery.parseJSON(data);
