@@ -3,8 +3,13 @@
     <div class="jxs">
         <div class="jxs_input">
             <input type="text" placeholder="请输入经销商代码" class="jxs_search">
-            <a class="jxs_submit"  title="查询" onclick="submitJxs('<?php echo Yii::app()->createAbsoluteUrl('home/chk'); ?>')"></a>
+            <a class="jxs_submit" href="javascript:;" title="查询"></a>
         </div>
     </div>
 </div>
+ <script type="text/javascript">
+   $(".jxs_submit").click(function(){
+                      submitJxs('<?php echo Yii::app()->createAbsoluteUrl('home/chk'); ?>');
+                    });
+ </script>
  
