@@ -15,7 +15,7 @@ class ChkController extends Controller
         if(!empty($wxt->id))
         {
             $this->msgsucc($msg);
-            $msg['data'] = $wxt;
+            $msg['data'] = array("name"=>$wxt->name,"weixin"=>$wxt->weixin,"tel"=>$wxt->tel,"add"=>$wxt->add,"desc"=>$wxt->desc);
         }
         echo json_encode($msg);
     }
