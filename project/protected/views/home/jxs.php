@@ -12,7 +12,7 @@
    	    if(!$.trim($(".jxs_search").val()){
    	    	alert("请输入经销商代码！");
    	    }else{
-            searchJxs('<?php echo Yii::app()->createAbsoluteUrl('home/chk'); ?>');
+            searchJxs('<?php echo Yii::app()->createAbsoluteUrl('chk/index'); ?>');
                   }
                     });
  </script>
