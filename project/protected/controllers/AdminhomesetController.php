@@ -400,4 +400,139 @@ class AdminhomesetController extends AdminSet
         }
         echo json_encode($msg);
     }
+
+    public function actionNews()
+    {
+        //print_r(Yii::app()->user->getState('username'));
+        //先获取当前是否有页码信息
+        $pages['pageNum'] = Yii::app()->getRequest()->getParam("pageNum", 1); //当前页
+        $pages['countPage'] = Yii::app()->getRequest()->getParam("countPage", 0); //总共多少记录
+        $pages['numPerPage'] = Yii::app()->getRequest()->getParam("numPerPage", 50); //每页多少条数据
+
+        $criteria = new CDbCriteria;
+        $pages['countPage'] = AppMmNews::model()->count($criteria);
+        $criteria->limit = $pages['numPerPage'];
+        $criteria->offset = $pages['numPerPage'] * ($pages['pageNum'] - 1);
+        $criteria->order = 'id DESC';
+        $allList = AppMmNews::model()->findAll($criteria);
+        $this->renderPartial('newsmanager', array(
+            'models' => $allList,
+            'pages' => $pages),false,true);
+    }
+
+    /**
+     * 删除新闻
+     */
+    public function actionNewsDel()
+    {
+        $msg = $this->msgcode();
+        $id = Yii::app()->getRequest()->getParam("id", 0); //用户名
+        if($id!=0)
+        {
+            if(AppMmNews::model()->deleteByPk($id))
+            {
+                $this->msgsucc($msg);
+            }
+            else
+                $msg['msg'] = "数据删除失败";
+        }else
+        {
+            $msg['msg'] = "id不能为空";
+        }
+        echo json_encode($msg);
+    }
+
+    /**
+     * 添加新闻
+     */
+    public function actionNewsAdd()
+    {
+        $this->renderPartial('newsadd');
+    }
+    public function actionNewsShow()
+    {
+        $this->renderPartial('newsshow');
+    }
+    public function actionNewsOut()
+    {
+        $msg = $this->msgcode();
+        $rel = Yii::app()->getRequest()->getParam("news_rel", ""); //类型
+        $arr = explode(',',$rel);
+        $this->msgsucc($msg);
+        $msg['data'] = base64_encode(json_encode($arr));
+        echo json_encode($msg);
+    }
+    /**
+     * 编辑新闻
+     */
+    public function actionNewsEdit()
+    {
+        $id = Yii::app()->getRequest()->getParam("id", 0); //用户名
+        $model = array();
+        if($id!="")
+            $model = AppMmNews::model()->findByPk($id);
+        $this->renderPartial('newsedit',array("models"=>$model));
+    }
+
+    /**
+     * 保存新闻
+     */
+    public function actionNewsSave()
+    {
+        $msg = $this->msgcode();
+        $link = Yii::app()->getRequest()->getParam("news_link", ""); //类型
+        $title = Yii::app()->getRequest()->getParam("news_title", ""); //用户名
+        $content = Yii::app()->getRequest()->getParam("news_content", ""); //用户名
+
+        if($content!=""&&$title!="")
+        {
+            $model = new AppMmNews();
+            $model->title = $title;
+            $model->link = $link;
+            $model->content = $content;
+            if($model->save())
+            {
+                $this->msgsucc($msg);
+                $msg['msg'] = "添加成功";
+            }else
+            {
+                $msg['msg'] = "存入数据库异常";
+            }
+        }else{
+            $msg['msg'] = "必填项不能为空";
+        }
+        echo json_encode($msg);
+    }
+
+    /**
+     * 保存新闻
+     */
+    public function actionNewsUpdate()
+    {
+        $msg = $this->msgcode();
+        $id = Yii::app()->getRequest()->getParam("id", ""); //编号
+        $link = Yii::app()->getRequest()->getParam("news_link", ""); //类型
+        $title = Yii::app()->getRequest()->getParam("news_title", ""); //用户名
+        $content = Yii::app()->getRequest()->getParam("news_content", ""); //用户名
+        
+        if($id!==""&&$content!=""&&$title!="")
+        {
+			$model = AppMmNews::model()->findByPk($id);
+			$model->title = $title;
+            $model->link = $link;
+            $model->content = $content;
+            if($model->save())
+            {
+                $this->msgsucc($msg);
+                $msg['msg'] = "更新成功";
+            }else
+            {
+                $msg['msg'] = "存入数据库异常";
+            }
+
+        }else{
+            $msg['msg'] = "必填项不能为空";
+        }
+        echo json_encode($msg);
+    }
 }

@@ -301,4 +301,12 @@ class HomeController extends Controller
         }
         echo json_encode($msg);
     }
+    public function actionM()
+    {
+        $code = Yii::app()->getRequest()->getParam("c", ""); //总价
+        $arr = json_decode(base64_decode($code));
+        $str = implode(",",$arr);
+        $model = AppMmNews::model()->findAll("id in ({$str})");
+        $this->renderPartial('m',array("model"=>$model));
+    }
 }
