@@ -167,3 +167,22 @@ function submitinfo(url,jump){
   }   
 
 }
+
+function searchJxs(url){
+  $.ajax({
+            type: 'POST',
+            url: url,
+            data: {
+                wx: $(".jxs_search").val(),
+            },
+            success: function(data) {
+                var obj = jQuery.parseJSON(data);
+                if (obj.code == 0) {
+                   
+                } else {
+                  
+                }
+                
+            }
+        });
+    }  
