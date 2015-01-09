@@ -9,7 +9,7 @@
 </div>
  <script type="text/javascript">
    $(".jxs_submit").click(function(){
-                      submitJxs('<?php echo Yii::app()->createAbsoluteUrl('home/chk'); ?>');
+                      searchJxs('<?php echo Yii::app()->createAbsoluteUrl('home/chk'); ?>');
                     });
  </script>
  
