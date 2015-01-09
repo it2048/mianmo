@@ -184,9 +184,11 @@ function searchJxs(url){
                   +"<br>联系电话："+obj.data.tel+"<br>微信号："+obj.data.weixin;
                   $(".jxs_xinxi").append(str);
                   $(".jxs_info_show").show();
+                  $(".jxs_error").hide();
                 } else {
                   $(".red_error").text($.trim($(".jxs_search").val()));
                   $(".jxs_error").show();
+                  $(".jxs_info_show").hide();
                 }
                 
             }
