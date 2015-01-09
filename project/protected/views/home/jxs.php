@@ -8,10 +8,10 @@
     </div>
     <style type="text/css">
 .jxs_info_show,
-.jxs_error{background: #333; background: rgba(0,0,0,0.5); padding: 20px; width:585px; display: none; color: #fff; font-size: 14px; line-height: 24px;margin: 10px auto; border-radius: 10px; }  
-.jxs_weixin { color:#4ee81e; font-size:14px; } 
+.jxs_error{background: #333; background: rgba(0,0,0,0.6); padding: 20px; width:585px; display: none; color: #fff; font-size: 14px; line-height: 24px;margin: 10px auto; border-radius: 10px; }  
+.jxs_weixin { color:#4ee81e; font-size:16px; padding-right: 4px; } 
 .jxs_xinxi { border-top: 1px solid #ccc; padding: 15px 0; line-height: 24px; color: #fff; margin-top: 10px;}
-.red_error { color: #f00;}
+.red_error { color: #f00;font-size:16px;padding-right: 4px; }
 
     </style>
     <div class="jxs_info_show">
