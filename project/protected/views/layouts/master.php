@@ -36,7 +36,7 @@
 </div>
 </div>
 <div class="footer">
-    <p>© ShowPlus.cc  鲁ICP备13045142号-1</p>
+    <p>© ShowPlus.cc  鲁ICP备14034907号</p>
 </div>
 </body>
 </html>

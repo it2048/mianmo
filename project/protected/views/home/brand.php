@@ -8,7 +8,7 @@
 		</div>
 		<div class="b_des">
 			<p>每一片ShowPlus面膜都经过用心雕琢，为了让面膜更加贴近皮肤，我们为客户朋友们提供了专用的面膜前导醒肤液体；为了让敏感肌肤能够享受面膜带来的美丽，我们采用了最顶级的抗敏生物纤维材料；为了摆脱敷面膜过程中枯燥的15分钟，我们为客户朋友们提供了专用面膜擦拭纸，擦干双手就可以玩手机，握遥控器……</p>
-			<p>您的美丽是我们的“用心”呈现，每一个细节都为女性量身打造，不下100人的肌肤测试，不下上百次的过程摸索，才成就一片showplus面膜。</p>
+			<p>您的美丽是我们的“用心”呈现，每一个细节都为女性量身打造，不下100人的肌肤测试，不下上百次的过程摸索，才成就一片ShowPlus面膜。</p>
 			<p class="spe">.<br>.<br>.<br>未<br>完<br>待<br>续<br>.<br>.<br>.</p>
 		</div>
 		<div class="team">
@@ -22,6 +22,8 @@
 					联系我们<br>400-004-3515
 				</div>
 				<div class="way_kind">
+					 <a href="tencent://message/?uin=654805289
+&Site=http://www.showplus.cc/&Menu=yes"><div class="qq_icon"></div></a>
 					<a href="tencent://message/?uin=654805289
 &Site=http://www.showplus.cc/&Menu=yes">客户服务<br>&nbsp;&nbsp;&nbsp;&nbsp;9:00-22:00</a>
 				</div>
@@ -30,4 +32,5 @@
 				</div>
 			</div>
 		</div>
+		 <a href="#" title="返回顶部"><div class="backtop"></div></a>
  

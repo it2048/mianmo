@@ -16,10 +16,10 @@
     </div>
     <p class="description"><b>SHOWPLUS产品</b><br>精致收纳袋  美颜产品  前导舒敏醒肤原液  面膜擦拭纸  想你所想  一应俱全</p>
     <div class="img_zone clearfix">
-        <a href=""><img src="<?php echo $home;?>images/bottom1.jpg" alt=""></a>
-        <a href=""><img src="<?php echo $home;?>images/bottom2.jpg" alt=""></a>
-        <a href=""><img src="<?php echo $home;?>images/bottom3.jpg" alt=""></a>
-        <a href=""><img src="<?php echo $home;?>images/bottom4.jpg" alt=""></a>
+        <a href="http://www.showplus.cc/index.php/home/showplus"><img src="<?php echo $home;?>images/bottom1.jpg" alt=""></a>
+        <a href="http://www.showplus.cc/index.php/home/showplus"><img src="<?php echo $home;?>images/bottom2.jpg" alt=""></a>
+        <a href="http://www.showplus.cc/index.php/home/showplus"><img src="<?php echo $home;?>images/bottom3.jpg" alt=""></a>
+        <a href="http://www.showplus.cc/index.php/home/showplus"><img src="<?php echo $home;?>images/bottom4.jpg" alt=""></a>
     </div>
     <div class="more">
         更多产品，即将到来

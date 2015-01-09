@@ -11,7 +11,7 @@
   	<div class="wrap" id="pori2">
   		<div class="safe">
   			<h3>世界安全标准，卓越品质</h3>
-            <p>每一片showplus面膜都来自我们的用心雕琢，安全毋庸置疑;<br>每一面showplus面膜超过符合GMPC（US） 美国食品和药品管理局，ISO9001标准，<br>零汞零荧光剂，安全放心。</p>
+            <p>每一片ShowPlus面膜都来自我们的用心雕琢，安全毋庸置疑;<br>每一面ShowPlus面膜超过符合GMPC（US） 美国食品和药品管理局，ISO9001标准，<br>零汞零荧光剂，安全放心。</p>
   		</div>
   	</div>
   </div>
@@ -48,4 +48,5 @@
 	  </div>
   </div>
 </div>
+<a href="#" title="返回顶部"><div class="backtop"></div></a>
 <div class="wrap">

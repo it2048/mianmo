@@ -24,7 +24,7 @@
 					<p class="youhui">订单优惠</p>
 					<div class="clear"></div>
 					<div class="dis_cont">
-						<span>[包邮]</span>一盒起享受包邮
+						<span>[包邮]</span>一盒起享受包邮<br>买四盒赠一盒
 					</div>
 					<div class="beizhu clearfix">
 						<span>订单备注：</span>
