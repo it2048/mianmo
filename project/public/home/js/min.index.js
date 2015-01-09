@@ -173,15 +173,20 @@ function searchJxs(url){
             type: 'POST',
             url: url,
             data: {
-                wx: $(".jxs_search").val(),
+                wx: $.trim($(".jxs_search").val()),
                 csrf_token: $('input[name="csrf_token"]').val()
             },
             success: function(data) {
                 var obj = jQuery.parseJSON(data);
                 if (obj.code == 0) {
-                   
+                  $(".jxs_weixin").text($.trim($(".jxs_search").val()));
+                  var str="联系人："+obj.data.name+"<br>身份认证："+obj.data.desc
+                  +"<br>联系电话："+obj.data.tel+"<br>微信号："+obj.data.weixin;
+                  $(".jxs_xinxi").append(str);
+                  $(".jxs_info_show").show();
                 } else {
-                  
+                  $(".red_error").text($.trim($(".jxs_search").val()));
+                  $(".jxs_error").show();
                 }
                 
             }
