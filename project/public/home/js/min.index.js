@@ -1,4 +1,4 @@
-$(function(){
+﻿$(function(){
   (function($){
   $.fn.Slide = function(options){
 var defaults = {
@@ -49,7 +49,7 @@ return this.each(function(){
 
 
 var price=298;
-var youhui=20;
+var youhui=0;
 $("#banner_cont").Slide();
 $(".minus").click(function(){
   var num=parseInt($(".pro_number").val());
@@ -78,6 +78,22 @@ $(".add").click(function(){
     return;
   }else{
     $(".pro_number").val(++num);
+    $("#money").text(""+num*price+".00");
+    $("#product").text(""+num*price+".00");
+    $("#youhui").text(""+youhui+".00");
+    $("#end_money").text(""+(num*price-youhui)+".00");
+  }
+});
+$(".pro_number").blur(function(){
+  var num=parseInt($(".pro_number").val());
+  if(!num){
+    alert("请填写正确的数字");
+    return;
+  }
+  if(num<1){
+    return;
+  }else{
+    $(".pro_number").val(num);
     $("#money").text(""+num*price+".00");
     $("#product").text(""+num*price+".00");
     $("#youhui").text(""+youhui+".00");

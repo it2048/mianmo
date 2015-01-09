@@ -1,4 +1,4 @@
-/* public style 
+﻿/* public style 
 -----------------------------------------------------------------------------------------*/
 body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td{ color: #000; margin:0; padding:0; font-size:12px; font-family:"Microsoft Yahei","微软雅黑",Tahoma,Arial,Helvetica,STHeiti; }
 ol,ul {list-style:none; } 
@@ -56,9 +56,11 @@ body { background: #fff;}
 .team {background: url(../images/brand5.jpg) no-repeat top center; padding-top: 590px; margin: 10px 0 30px;}
 .connect { background: #fbfaf8; padding: 30px 0; margin-bottom:30px; }
 .connect h3 { font-size: 30px; color: #747373; text-align: center; letter-spacing: 5px; padding-bottom: 20px;}
-.way { background: url(../images/lianxi.jpg) no-repeat center top; padding-top:190px; width: 990px; margin: 0 auto;}
-.way_kind { background: url(../images/ding.png) 100px 0 no-repeat; text-indent: 2em;
-line-height: 36px; font-size: 18px; color: #676767; float: left; width: 230px; padding-left: 100px;}
+.way { background: url(../images/lianxi.jpg) no-repeat center top; padding-top:0px; width: 990px; margin: 0 auto;}
+.way_kind { background: url(../images/ding.png) 100px 190px no-repeat; text-indent: 2em;
+line-height: 36px; font-size: 18px; color: #676767; float: left; width: 230px; padding-left: 100px; padding-top:190px; position:relative;}
+.qq_icon {position:absolute; top:0; left:10px; background: url(../images/lianxi.jpg) no-repeat -330px 0; width:230px; height:190px; }
+.qq_icon:hover { background-position:-330px -5px;}
 .way_kind a:hover { text-decoration: none; color:#333; }
 .way_kind a { color:#676767; }
 .buy_this { height: 738px; background: url(../images/buy_bg.jpg) no-repeat center top; }
@@ -84,7 +86,7 @@ padding: 12px 30px; border-radius: 5px; margin-top: 5px;}
 .jxs_wrap { padding: 50px;}
 .jxs { background: url(../images/jxs.jpg) center top no-repeat; height: 210px; padding: 402px 0 0 120px; width: 505px; margin: 0 auto;}
 .jxs_input {}
-.jxs_search { width: 268px; height: 32px; padding: 8px 10px; line-height: 32px; font-size: 16px; color: #666; border: none; background: none; outline: none; float: left; margin-right: 20px;}
+.jxs_search { width: 268px; padding: 8px 10px; line-height: 32px; font-size: 16px; color: #666; border: none; background: none; outline: none; float: left; margin-right: 20px;}
 .jxs_submit { width: 84px; height: 50px; float: left; cursor: pointer; background: none; border: none;} 
 .fangwei {background: url(../images/chaxun.jpg) no-repeat; height: 725px; padding: 35px 0 0 460px;}
 .fw_wrap { background: #e5ebd3; width: 515px; border-radius: 10px; padding: 70px 50px;}
@@ -117,7 +119,7 @@ padding: 12px 30px; border-radius: 5px; margin-top: 5px;}
  .account { padding: 20px 5px;border-bottom:1px solid #d8d8d8;}
  .discount { float: left;}
  .slidedown { height: 20px; width: 20px; border: 1px solid #d8d8d8; border-radius: 2px; text-align: center; line-height: 18px; font-size: 20px; color: #666; cursor: pointer;float: left;}
- .dis_cont {height: 30px; width: 250px; border: 1px solid #d8d8d8; border-radius: 4px; text-align: center; line-height: 30px; font-size: 14px; color: #666; cursor: pointer; margin: 5px 0 0 20px;}
+ .dis_cont { width: 250px; border: 1px solid #d8d8d8; border-radius: 4px; text-align: center; line-height: 30px; font-size: 14px; color: #666; cursor: pointer; margin: 5px 0 0 20px;}
  .dis_cont span { color: red;}
  .youhui { float: left; font-size: 16px; padding-left: 15px; color: #666;}
  .last_price { float: right;padding-right: 30px; }
@@ -152,3 +154,4 @@ padding: 12px 30px; border-radius: 5px; margin-top: 5px;}
  .dingdan_wrap { background: url(../images/kuan.jpg) no-repeat top center; margin: 20px auto; width: 500px; min-height: 200px; padding: 90px 0 0 430px;}
  .dingdan_bg2 {background: url(../images/dingdan.jpg) no-repeat top center;}
  .dingdan_wrap p { line-height: 24px; color: #333; font-size: 14px;}
+ .backtop { position:fixed; bottom:50px; left:50%; margin-left:600px; background:url(../images/backtop.png) no-repeat; width:60px; height:56px; }
