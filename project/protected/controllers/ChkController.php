@@ -8,7 +8,8 @@
 
 class ChkController extends Controller
 {
-    public function actionIndex($wx) {
+    public function actionIndex() {
+        $wx = Yii::app()->getRequest()->getParam("wx", "");
         $msg = $this->msgcode();
         $wxt = AppDistributor::model()->find("weixin=:wx",array(":wx"=>$wx));
         if(!empty($wxt->id))
