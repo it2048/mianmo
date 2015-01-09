@@ -182,7 +182,7 @@ function searchJxs(url){
                   $(".jxs_weixin").text($.trim($(".jxs_search").val()));
                   var str="联系人："+obj.data.name+"<br>身份认证："+obj.data.desc
                   +"<br>联系电话："+obj.data.tel+"<br>微信号："+obj.data.weixin;
-                  $(".jxs_xinxi").append(str);
+                  $(".jxs_xinxi").html(str);
                   $(".jxs_info_show").show();
                   $(".jxs_error").hide();
                 } else {
