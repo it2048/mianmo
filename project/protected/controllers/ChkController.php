@@ -14,8 +14,8 @@ class ChkController extends Controller
         $wxt = AppDistributor::model()->find("weixin=:wx",array(":wx"=>$wx));
         if(!empty($wxt->id))
         {
-            $msg['data'] = $wxt;
             $this->msgsucc($msg);
+            $msg['data'] = $wxt;
         }
         echo json_encode($msg);
     }
