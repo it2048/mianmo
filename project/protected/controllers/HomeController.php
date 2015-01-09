@@ -301,14 +301,4 @@ class HomeController extends Controller
         }
         echo json_encode($msg);
     }
-    
-    public function actionChk($wx) {
-        $msg = $this->msgcode();
-        $wxt = AppDistributor::model()->find("weixin=:wx",array(":wx"=>$wx));
-        if(!empty($wxt->id))
-        {
-            $this->msgsucc($msg);
-        }
-        echo json_encode($msg);
-    }
 }
